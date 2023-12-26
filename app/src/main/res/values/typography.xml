@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Typography">
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="Typography.regular14">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/jamsil_3_regular</item>
+    </style>
+
+    <style name="Typography.regular16">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/jamsil_3_regular</item>
+    </style>
+
+    <style name="Typography.regular18">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/jamsil_3_regular</item>
+    </style>
+
+    <style name="Typography.regular20">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/jamsil_3_regular</item>
+    </style>
+
+    <style name="Typography.regular22">
+        <item name="android:textSize">22sp</item>
+        <item name="android:fontFamily">@font/jamsil_3_regular</item>
+    </style>
+
+    <style name="Typography.regular24">
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/jamsil_3_regular</item>
+    </style>
+
+    <style name="Typography.regular26">
+        <item name="android:textSize">26sp</item>
+        <item name="android:fontFamily">@font/jamsil_3_regular</item>
+    </style>
+
+    <style name="Typography.regular28">
+        <item name="android:textSize">28sp</item>
+        <item name="android:fontFamily">@font/jamsil_3_regular</item>
+    </style>
+
+    <style name="Typography.regular30">
+        <item name="android:textSize">30sp</item>
+        <item name="android:fontFamily">@font/jamsil_3_regular</item>
+    </style>
+
+    <style name="Typography.medium14">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/jamsil_4_medium</item>
+    </style>
+
+    <style name="Typography.medium16">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/jamsil_4_medium</item>
+    </style>
+
+    <style name="Typography.medium18">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/jamsil_4_medium</item>
+    </style>
+
+    <style name="Typography.medium20">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">@font/jamsil_4_medium</item>
+    </style>
+
+    <style name="Typography.medium22">
+        <item name="android:textSize">22sp</item>
+        <item name="android:fontFamily">@font/jamsil_4_medium</item>
+    </style>
+
+    <style name="Typography.medium24">
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/jamsil_4_medium</item>
+    </style>
+
+    <style name="Typography.medium26">
+        <item name="android:textSize">26sp</item>
+        <item name="android:fontFamily">@font/jamsil_4_medium</item>
+    </style>
+
+    <style name="Typography.medium28">
+        <item name="android:textSize">28sp</item>
+        <item name="android:fontFamily">@font/jamsil_4_medium</item>
+    </style>
+
+    <style name="Typography.medium30">
+        <item name="android:textSize">30sp</item>
+        <item name="android:fontFamily">@font/jamsil_4_medium</item>
+    </style>
+
+    <style name="Typography.bold22">
+        <item name="android:textSize">22sp</item>
+        <item name="android:fontFamily">@font/jamsil_5_bold</item>
+    </style>
+
+    <style name="Typography.bold24">
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/jamsil_5_bold</item>
+    </style>
+
+    <style name="Typography.bold26">
+        <item name="android:textSize">26sp</item>
+        <item name="android:fontFamily">@font/jamsil_5_bold</item>
+    </style>
+
+    <style name="Typography.bold28">
+        <item name="android:textSize">28sp</item>
+        <item name="android:fontFamily">@font/jamsil_5_bold</item>
+    </style>
+
+    <style name="Typography.bold30">
+        <item name="android:textSize">30sp</item>
+        <item name="android:fontFamily">@font/jamsil_5_bold</item>
+    </style>
+
+    <style name="Typography.extrabold22">
+        <item name="android:textSize">22sp</item>
+        <item name="android:fontFamily">@font/jamsil_6_extrabold</item>
+    </style>
+
+    <style name="Typography.extrabold24">
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/jamsil_6_extrabold</item>
+    </style>
+
+    <style name="Typography.extrabold26">
+        <item name="android:textSize">26sp</item>
+        <item name="android:fontFamily">@font/jamsil_6_extrabold</item>
+    </style>
+
+    <style name="Typography.extrabold28">
+        <item name="android:textSize">28sp</item>
+        <item name="android:fontFamily">@font/jamsil_6_extrabold</item>
+    </style>
+
+    <style name="Typography.extrabold30">
+        <item name="android:textSize">30sp</item>
+        <item name="android:fontFamily">@font/jamsil_6_extrabold</item>
+    </style>
+
+</resources>
