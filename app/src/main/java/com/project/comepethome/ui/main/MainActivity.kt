@@ -2,10 +2,12 @@ package com.project.comepethome.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.project.comepethome.R
 import com.project.comepethome.databinding.ActivityMainBinding
+import com.project.comepethome.ui.login.LogInFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,6 +17,8 @@ class MainActivity : AppCompatActivity() {
 
         activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(activityMainBinding.root)
+
+        replaceFragment(LOG_IN_FRAGMENT, false, null)
     }
 
     fun replaceFragment(name:String, addToBackStack:Boolean, bundle:Bundle?){
@@ -26,6 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         // 새로운 Fragment를 담을 변수
         newFragment = when(name){
+            LOG_IN_FRAGMENT -> LogInFragment()
 
             else -> Fragment()
         }
@@ -50,6 +55,18 @@ class MainActivity : AppCompatActivity() {
     // Fragment를 BackStack에서 제거한다.
     fun removeFragment(name: String){
         supportFragmentManager.popBackStack(name, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+    }
+
+    fun showBottomNavigationView() {
+        activityMainBinding.bottomNavigationViewMain.visibility = View.VISIBLE
+    }
+
+    fun hideBottomNavigationView() {
+        activityMainBinding.bottomNavigationViewMain.visibility = View.GONE
+    }
+
+    companion object {
+        val LOG_IN_FRAGMENT = "LogInFragment"
     }
 
 }
