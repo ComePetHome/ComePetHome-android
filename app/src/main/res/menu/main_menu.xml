@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/home_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/ic_home_24dp"
+        android:title="홈" />
+
+    <item
+        android:id="@+id/board_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/ic_board_24dp"
+        android:title="게시판" />
+
+    <item
+        android:id="@+id/search_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/ic_search_24dp"
+        android:title="동물 조회" />
+
+    <item
+        android:id="@+id/my_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:icon="@drawable/ic_person_24dp"
+        android:title="마이" />
+
+
+</menu>
