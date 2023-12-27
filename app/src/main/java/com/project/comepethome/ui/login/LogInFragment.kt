@@ -24,7 +24,15 @@ class LogInFragment : Fragment() {
 
         mainActivity.hideBottomNavigationView()
 
+        moveToJoin()
+
         return binding.root
+    }
+
+    private fun moveToJoin() {
+        binding.textViewJoinLogin.setOnClickListener {
+            mainActivity.replaceFragment(MainActivity.JOIN_FRAGMENT, true, null)
+        }
     }
 
 }
