@@ -24,9 +24,16 @@ class LogInFragment : Fragment() {
 
         mainActivity.hideBottomNavigationView()
 
+        moveToFindID()
         moveToJoin()
 
         return binding.root
+    }
+
+    private fun moveToFindID() {
+        binding.textViewIdSearchLogin.setOnClickListener {
+            mainActivity.replaceFragment(MainActivity.FIND_ID_FRAGMENT, true, null)
+        }
     }
 
     private fun moveToJoin() {
