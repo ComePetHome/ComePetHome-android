@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.project.comepethome.R
 import com.project.comepethome.databinding.ActivityMainBinding
+import com.project.comepethome.ui.find.FindIdCompleteFragment
+import com.project.comepethome.ui.find.FindIdFragment
 import com.project.comepethome.ui.join.JoinFragment
 import com.project.comepethome.ui.login.LogInFragment
 
@@ -33,6 +35,8 @@ class MainActivity : AppCompatActivity() {
         newFragment = when(name){
             LOG_IN_FRAGMENT -> LogInFragment()
             JOIN_FRAGMENT -> JoinFragment()
+            FIND_ID_FRAGMENT -> FindIdFragment()
+            FIND_ID_COMPLETE_FRAGMENT -> FindIdCompleteFragment()
 
             else -> Fragment()
         }
@@ -70,6 +74,8 @@ class MainActivity : AppCompatActivity() {
     companion object {
         val LOG_IN_FRAGMENT = "LogInFragment"
         val JOIN_FRAGMENT = "JoinFragment"
+        val FIND_ID_FRAGMENT = "FindIdFragment"
+        val FIND_ID_COMPLETE_FRAGMENT = "FindIdCompleteFragment"
     }
 
 }
