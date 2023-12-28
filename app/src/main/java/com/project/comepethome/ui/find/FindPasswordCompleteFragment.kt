@@ -6,13 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.project.comepethome.R
-import com.project.comepethome.databinding.FragmentFindPasswordBinding
+import com.project.comepethome.databinding.FragmentFindPasswordCompleteBinding
 import com.project.comepethome.ui.main.MainActivity
 
-class FindPasswordFragment : Fragment() {
+
+class FindPasswordCompleteFragment : Fragment() {
 
     lateinit var mainActivity: MainActivity
-    lateinit var binding: FragmentFindPasswordBinding
+    lateinit var binding: FragmentFindPasswordCompleteBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -20,23 +21,17 @@ class FindPasswordFragment : Fragment() {
     ): View? {
 
         mainActivity = activity as MainActivity
-        binding = FragmentFindPasswordBinding.inflate(layoutInflater)
+        binding = FragmentFindPasswordCompleteBinding.inflate(layoutInflater)
 
-        closeButton()
-        findButton()
+        moveToLogin()
 
         return binding.root
     }
 
-    private fun closeButton() {
-        binding.imageCloseFindPassword.setOnClickListener {
+    private fun moveToLogin() {
+        binding.buttonFindPasswordComplete.setOnClickListener {
+            mainActivity.replaceFragment(MainActivity.LOG_IN_FRAGMENT, false, null)
             mainActivity.removeFragment(MainActivity.FIND_PASSWORD_FRAGMENT)
-        }
-    }
-
-    private fun findButton() {
-        binding.buttonFindPassword.setOnClickListener {
-            mainActivity.replaceFragment(MainActivity.FIND_PASSWORD_COMPLETE_FRAGMENT, true, null)
         }
     }
 

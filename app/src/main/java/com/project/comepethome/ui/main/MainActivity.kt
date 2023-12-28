@@ -9,6 +9,7 @@ import com.project.comepethome.R
 import com.project.comepethome.databinding.ActivityMainBinding
 import com.project.comepethome.ui.find.FindIdCompleteFragment
 import com.project.comepethome.ui.find.FindIdFragment
+import com.project.comepethome.ui.find.FindPasswordCompleteFragment
 import com.project.comepethome.ui.find.FindPasswordFragment
 import com.project.comepethome.ui.join.JoinFragment
 import com.project.comepethome.ui.login.LogInFragment
@@ -39,6 +40,7 @@ class MainActivity : AppCompatActivity() {
             FIND_ID_FRAGMENT -> FindIdFragment()
             FIND_ID_COMPLETE_FRAGMENT -> FindIdCompleteFragment()
             FIND_PASSWORD_FRAGMENT -> FindPasswordFragment()
+            FIND_PASSWORD_COMPLETE_FRAGMENT -> FindPasswordCompleteFragment()
 
             else -> Fragment()
         }
@@ -79,6 +81,7 @@ class MainActivity : AppCompatActivity() {
         val FIND_ID_FRAGMENT = "FindIdFragment"
         val FIND_ID_COMPLETE_FRAGMENT = "FindIdCompleteFragment"
         val FIND_PASSWORD_FRAGMENT = "FindPasswordFragment"
+        val FIND_PASSWORD_COMPLETE_FRAGMENT = "FindPasswordCompleteFragment"
     }
 
 }
