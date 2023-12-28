@@ -6,13 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.project.comepethome.R
-import com.project.comepethome.databinding.FragmentFindIdBinding
+import com.project.comepethome.databinding.FragmentFindIdCompleteBinding
 import com.project.comepethome.ui.main.MainActivity
 
-class FindIdFragment : Fragment() {
+class FindIdCompleteFragment : Fragment() {
 
     lateinit var mainActivity: MainActivity
-    lateinit var binding: FragmentFindIdBinding
+    lateinit var binding: FragmentFindIdCompleteBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -20,23 +20,17 @@ class FindIdFragment : Fragment() {
     ): View? {
 
         mainActivity = activity as MainActivity
-        binding = FragmentFindIdBinding.inflate(layoutInflater)
+        binding = FragmentFindIdCompleteBinding.inflate(layoutInflater)
 
-        closeButton()
-        findButton()
+        moveToLogin()
 
         return binding.root
     }
 
-    private fun closeButton() {
-        binding.imageCloseFindId.setOnClickListener {
+    private fun moveToLogin() {
+        binding.buttonFindIdComplete.setOnClickListener {
+            mainActivity.replaceFragment(MainActivity.LOG_IN_FRAGMENT, false, null)
             mainActivity.removeFragment(MainActivity.FIND_ID_FRAGMENT)
-        }
-    }
-
-    private fun findButton() {
-        binding.buttonFindId.setOnClickListener {
-            mainActivity.replaceFragment(MainActivity.FIND_ID_COMPLETE_FRAGMENT, true, null)
         }
     }
 
