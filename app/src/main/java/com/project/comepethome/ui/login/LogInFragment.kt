@@ -28,6 +28,7 @@ class LogInFragment : Fragment() {
 
         mainActivity.hideBottomNavigationView()
 
+        moveToLogin()
         moveToFindID()
         moveToFindPassword()
         moveToJoin()
@@ -60,6 +61,13 @@ class LogInFragment : Fragment() {
         } else {
             // 일정 시간 내에 두 번째 뒤로가기 버튼을 눌렀으므로 앱 종료
             requireActivity().finish()
+        }
+    }
+
+    private fun moveToLogin() {
+        binding.buttonLogin.setOnClickListener {
+            mainActivity.replaceFragment(MainActivity.HOME_FRAGMENT, false, null)
+            mainActivity.showBottomNavigationView()
         }
     }
 
