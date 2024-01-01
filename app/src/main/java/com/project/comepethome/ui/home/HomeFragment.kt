@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Space
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.project.comepethome.R
 import com.project.comepethome.databinding.FragmentHomeBinding
 import com.project.comepethome.ui.main.MainActivity
@@ -23,7 +26,16 @@ class HomeFragment : Fragment() {
         mainActivity = activity as MainActivity
         binding = FragmentHomeBinding.inflate(layoutInflater)
 
+        initRecyclerView()
+
         return binding.root
+    }
+
+    private fun initRecyclerView() {
+        val recyclerView = binding.recyclerViewHome
+        recyclerView.layoutManager = GridLayoutManager(context, 2)
+        recyclerView.adapter = HomeAdapter()
+
     }
 
 }
