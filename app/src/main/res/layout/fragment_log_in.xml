@@ -20,7 +20,7 @@
         android:layout_marginTop="30dp"
         android:text="컴펫홈"
         android:textAppearance="@style/Typography.bold30"
-        android:textColor="@color/brown" />
+        android:textColor="@color/orange" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
