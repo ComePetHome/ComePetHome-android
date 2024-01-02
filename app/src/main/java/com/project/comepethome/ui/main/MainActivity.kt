@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.project.comepethome.R
 import com.project.comepethome.databinding.ActivityMainBinding
+import com.project.comepethome.ui.board.BoardMainFragment
 import com.project.comepethome.ui.find.FindIdCompleteFragment
 import com.project.comepethome.ui.find.FindIdFragment
 import com.project.comepethome.ui.find.FindPasswordCompleteFragment
@@ -43,6 +44,7 @@ class MainActivity : AppCompatActivity() {
             FIND_PASSWORD_FRAGMENT -> FindPasswordFragment()
             FIND_PASSWORD_COMPLETE_FRAGMENT -> FindPasswordCompleteFragment()
             HOME_FRAGMENT -> HomeFragment()
+            BOARD_MAIN_FRAGMENT -> BoardMainFragment()
 
             else -> Fragment()
         }
@@ -87,6 +89,10 @@ class MainActivity : AppCompatActivity() {
                         replaceFragment(HOME_FRAGMENT, false, null)
                         return@setOnItemSelectedListener true
                     }
+                    R.id.board_menu -> {
+                        replaceFragment(BOARD_MAIN_FRAGMENT, false, null)
+                        return@setOnItemSelectedListener true
+                    }
 
                     else -> return@setOnItemSelectedListener false
                 }
@@ -102,6 +108,7 @@ class MainActivity : AppCompatActivity() {
         val FIND_PASSWORD_FRAGMENT = "FindPasswordFragment"
         val FIND_PASSWORD_COMPLETE_FRAGMENT = "FindPasswordCompleteFragment"
         val HOME_FRAGMENT = "HomeFragment"
+        val BOARD_MAIN_FRAGMENT = "BoardMainFragment"
     }
 
 }
