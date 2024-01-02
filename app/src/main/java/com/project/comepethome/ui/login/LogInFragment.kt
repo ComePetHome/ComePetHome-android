@@ -68,6 +68,7 @@ class LogInFragment : Fragment() {
         binding.buttonLogin.setOnClickListener {
             mainActivity.replaceFragment(MainActivity.HOME_FRAGMENT, false, null)
             mainActivity.showBottomNavigationView()
+            mainActivity.bottomNavigation()
         }
     }
 

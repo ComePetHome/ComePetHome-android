@@ -77,6 +77,23 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding.bottomNavigationViewMain.visibility = View.GONE
     }
 
+    fun bottomNavigation() {
+
+        activityMainBinding.bottomNavigationViewMain.run {
+
+            setOnItemSelectedListener {
+                when(it.itemId) {
+                    R.id.home_menu -> {
+                        replaceFragment(HOME_FRAGMENT, false, null)
+                        return@setOnItemSelectedListener true
+                    }
+
+                    else -> return@setOnItemSelectedListener false
+                }
+            }
+        }
+    }
+
     companion object {
         val LOG_IN_FRAGMENT = "LogInFragment"
         val JOIN_FRAGMENT = "JoinFragment"
