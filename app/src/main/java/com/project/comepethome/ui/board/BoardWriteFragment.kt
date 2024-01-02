@@ -25,6 +25,7 @@ class BoardWriteFragment : Fragment() {
 
         initMaterialToolbar()
         initUI()
+        writeButton()
 
         return binding.root
     }
@@ -47,6 +48,12 @@ class BoardWriteFragment : Fragment() {
             }
         }
 
+    }
+
+    private fun writeButton() {
+        binding.buttonBoardWrite.setOnClickListener {
+            mainActivity.removeFragment(MainActivity.BOARD_WRITE_FRAGMENT)
+        }
     }
 
 }

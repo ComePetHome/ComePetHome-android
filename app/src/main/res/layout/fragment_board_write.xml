@@ -39,6 +39,171 @@
             android:background="@drawable/selector_spinner"
             android:padding="10dp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:text="제목"
+            android:textAppearance="@style/Typography.medium16" />
+
+        <EditText
+            android:id="@+id/editText_title_board_write"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_text"
+            android:hint="제목을 입력해주세요."
+            android:maxLines="2"
+            android:padding="20dp"
+            android:textAppearance="@style/Typography.medium16"
+            android:textColorHint="@color/gray200" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:text="내용"
+            android:textAppearance="@style/Typography.medium16" />
+
+        <EditText
+            android:id="@+id/editText_title_board_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_text"
+            android:gravity="top|start"
+            android:hint="내용을 입력해주세요."
+            android:padding="20dp"
+            android:textAppearance="@style/Typography.medium16"
+            android:textColorHint="@color/gray200" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="사진"
+                android:textAppearance="@style/Typography.medium16" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="(최대 3장)"
+                android:textAppearance="@font/jamsil_2_light"
+                android:textSize="12dp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/shape_camera">
+
+                <ImageButton
+                    android:id="@+id/imageButton_camera_board_write"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/img_camera"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp">
+
+                <ImageView
+                    android:id="@+id/imageView_first_board_write"
+                    android:layout_width="50dp"
+                    android:layout_height="56dp"
+                    android:background="@drawable/shape_rectangle"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageView_first_delete_board_write"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="4dp"
+                    android:src="@drawable/ic_baseline_clear_24"
+                    app:layout_constraintEnd_toEndOf="@id/imageView_first_board_write"
+                    app:layout_constraintTop_toTopOf="@id/imageView_first_board_write" />
+
+                <ImageView
+                    android:id="@+id/imageView_second_board_write"
+                    android:layout_width="50dp"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/shape_rectangle"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView_first_board_write"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageView_second_delete_board_write"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="4dp"
+                    android:src="@drawable/ic_baseline_clear_24"
+                    app:layout_constraintEnd_toEndOf="@id/imageView_second_board_write"
+                    app:layout_constraintTop_toTopOf="@id/imageView_second_board_write" />
+
+                <ImageView
+                    android:id="@+id/imageView_third_board_write"
+                    android:layout_width="50dp"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/shape_rectangle"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView_second_board_write"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageView_third_delete_board_write"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="4dp"
+                    android:src="@drawable/ic_baseline_clear_24"
+                    app:layout_constraintEnd_toEndOf="@id/imageView_third_board_write"
+                    app:layout_constraintTop_toTopOf="@id/imageView_third_board_write" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_board_write"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/bg_rect_orange_r10"
+            android:text="등록하기"
+            android:textAppearance="@style/Typography.medium24" />
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
