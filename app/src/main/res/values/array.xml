@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="array_board_category">
+        <item>카테고리를 선택해주세요</item>
+        <item>임시보호</item>
+        <item>실시간제보</item>
+        <item>찾습니다</item>
+        <item>입양후기</item>
+    </string-array>
+</resources>

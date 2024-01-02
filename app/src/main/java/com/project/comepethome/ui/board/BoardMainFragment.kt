@@ -23,14 +23,30 @@ class BoardMainFragment : Fragment() {
         mainActivity = activity as MainActivity
         binding = FragmentBoardMainBinding.inflate(layoutInflater)
 
+        initUI()
         initRecyclerView()
+        moveToBoardWrite()
 
         return binding.root
+    }
+
+    private fun initUI() {
+        binding.run {
+            mainActivity.activityMainBinding.bottomNavigationViewMain.visibility = View.VISIBLE
+        }
     }
 
     private fun initRecyclerView() {
         val recyclerView = binding.recyclerViewBoardMain
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = BoardMainAdapter()
+    }
+
+    private fun moveToBoardWrite() {
+        binding.floatingActionButtonBoardMain.setOnClickListener {
+            mainActivity.replaceFragment(MainActivity.BOARD_WRITE_FRAGMENT, true, null)
+            mainActivity.hideBottomNavigationView()
+        }
+
     }
 }
