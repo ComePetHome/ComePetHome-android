@@ -26,6 +26,7 @@ class BoardMainFragment : Fragment() {
         initUI()
         initRecyclerView()
         moveToBoardWrite()
+        moveToBoardSearch()
 
         return binding.root
     }
@@ -48,5 +49,16 @@ class BoardMainFragment : Fragment() {
             mainActivity.hideBottomNavigationView()
         }
 
+    }
+
+    private fun moveToBoardSearch() {
+        binding.materialToolbarBoardMain.run {
+            setOnMenuItemClickListener {
+                when(it.itemId) {
+                    R.id.item_search -> mainActivity.replaceFragment(MainActivity.BOARD_SEARCH_FRAGMENT, true, null)
+                }
+                false
+            }
+        }
     }
 }

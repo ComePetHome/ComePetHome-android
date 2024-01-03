@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager
 import com.project.comepethome.R
 import com.project.comepethome.databinding.ActivityMainBinding
 import com.project.comepethome.ui.board.BoardMainFragment
+import com.project.comepethome.ui.board.BoardSearchFragment
 import com.project.comepethome.ui.board.BoardWriteFragment
 import com.project.comepethome.ui.find.FindIdCompleteFragment
 import com.project.comepethome.ui.find.FindIdFragment
@@ -47,6 +48,7 @@ class MainActivity : AppCompatActivity() {
             HOME_FRAGMENT -> HomeFragment()
             BOARD_MAIN_FRAGMENT -> BoardMainFragment()
             BOARD_WRITE_FRAGMENT -> BoardWriteFragment()
+            BOARD_SEARCH_FRAGMENT -> BoardSearchFragment()
 
             else -> Fragment()
         }
@@ -112,6 +114,7 @@ class MainActivity : AppCompatActivity() {
         val HOME_FRAGMENT = "HomeFragment"
         val BOARD_MAIN_FRAGMENT = "BoardMainFragment"
         val BOARD_WRITE_FRAGMENT = "BoardWriteFragment"
+        val BOARD_SEARCH_FRAGMENT = "BoardSearchFragment"
     }
 
 }
