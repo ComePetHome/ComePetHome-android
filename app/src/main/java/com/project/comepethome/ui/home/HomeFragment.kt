@@ -27,6 +27,7 @@ class HomeFragment : Fragment() {
         binding = FragmentHomeBinding.inflate(layoutInflater)
 
         initRecyclerView()
+        moveToSearchAnimal()
 
         return binding.root
     }
@@ -36,6 +37,20 @@ class HomeFragment : Fragment() {
         recyclerView.layoutManager = GridLayoutManager(context, 2)
         recyclerView.adapter = HomeAdapter()
 
+    }
+
+    private fun moveToSearchAnimal() {
+        binding.materialToolbarHome.run {
+            setOnMenuItemClickListener {
+                when(it.itemId) {
+                    R.id.item_search -> {
+                        mainActivity.replaceFragment(MainActivity.SEARCH_ANIMAL_FRAGMENT, false, null)
+                        mainActivity.selectBottomNavigationItem(R.id.search_menu)
+                    }
+                }
+                false
+            }
+        }
     }
 
 }

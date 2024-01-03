@@ -110,6 +110,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun selectBottomNavigationItem(itemId: Int) {
+        activityMainBinding.bottomNavigationViewMain.selectedItemId = itemId
+    }
+
     companion object {
         val LOG_IN_FRAGMENT = "LogInFragment"
         val JOIN_FRAGMENT = "JoinFragment"
