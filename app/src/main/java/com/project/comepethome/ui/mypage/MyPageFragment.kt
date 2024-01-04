@@ -22,7 +22,22 @@ class MyPageFragment : Fragment() {
         mainActivity = activity as MainActivity
         binding = FragmentMyPageBinding.inflate(layoutInflater)
 
+        initUi()
+
         return binding.root
+    }
+
+    private fun initUi() {
+        binding.run {
+            mainActivity.showBottomNavigationView()
+
+            // 내 정보 수정
+            linearLayoutModifyMyPage.setOnClickListener {
+                mainActivity.replaceFragment(MainActivity.MYPAGE_MODIFY_FRAGMENT, true, null)
+                mainActivity.hideBottomNavigationView()
+            }
+
+        }
     }
 
 }

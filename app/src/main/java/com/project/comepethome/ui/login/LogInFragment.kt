@@ -69,6 +69,7 @@ class LogInFragment : Fragment() {
             mainActivity.replaceFragment(MainActivity.HOME_FRAGMENT, false, null)
             mainActivity.showBottomNavigationView()
             mainActivity.bottomNavigation()
+            mainActivity.selectBottomNavigationItem(R.id.home_menu)
         }
     }
 
