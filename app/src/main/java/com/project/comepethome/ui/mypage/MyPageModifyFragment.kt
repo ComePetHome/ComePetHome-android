@@ -37,6 +37,11 @@ class MyPageModifyFragment : Fragment() {
                 }
             }
 
+            // 닉네임 변경
+            linearLayoutNicknameMyPageModify.setOnClickListener {
+                mainActivity.replaceFragment(MainActivity.CHANGE_NICKNAME_FRAGMENT, true, null)
+            }
+
             // 로그아웃
             textViewLogoutMyPageModify.setOnClickListener {
                 mainActivity.replaceFragment(MainActivity.LOG_IN_FRAGMENT, false, null)

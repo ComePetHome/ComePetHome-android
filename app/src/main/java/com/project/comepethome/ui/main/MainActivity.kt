@@ -17,6 +17,7 @@ import com.project.comepethome.ui.find.FindPasswordFragment
 import com.project.comepethome.ui.home.HomeFragment
 import com.project.comepethome.ui.join.JoinFragment
 import com.project.comepethome.ui.login.LogInFragment
+import com.project.comepethome.ui.mypage.ChangeNicknameFragment
 import com.project.comepethome.ui.mypage.MyPageFragment
 import com.project.comepethome.ui.mypage.MyPageModifyFragment
 import com.project.comepethome.ui.search.SearchAnimalFragment
@@ -55,6 +56,7 @@ class MainActivity : AppCompatActivity() {
             SEARCH_ANIMAL_FRAGMENT -> SearchAnimalFragment()
             MYPAGE_FRAGMENT -> MyPageFragment()
             MYPAGE_MODIFY_FRAGMENT -> MyPageModifyFragment()
+            CHANGE_NICKNAME_FRAGMENT -> ChangeNicknameFragment()
 
             else -> Fragment()
         }
@@ -136,6 +138,7 @@ class MainActivity : AppCompatActivity() {
         val SEARCH_ANIMAL_FRAGMENT = "SearchAnimalFragment"
         val MYPAGE_FRAGMENT = "MyPageFragment"
         val MYPAGE_MODIFY_FRAGMENT = "MyPageModifyFragment"
+        val CHANGE_NICKNAME_FRAGMENT = "ChangeNicknameFragment"
     }
 
 }
