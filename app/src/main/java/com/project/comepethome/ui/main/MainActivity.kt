@@ -17,6 +17,7 @@ import com.project.comepethome.ui.find.FindPasswordFragment
 import com.project.comepethome.ui.home.HomeFragment
 import com.project.comepethome.ui.join.JoinFragment
 import com.project.comepethome.ui.login.LogInFragment
+import com.project.comepethome.ui.mypage.MyPageFragment
 import com.project.comepethome.ui.search.SearchAnimalFragment
 
 class MainActivity : AppCompatActivity() {
@@ -51,6 +52,7 @@ class MainActivity : AppCompatActivity() {
             BOARD_WRITE_FRAGMENT -> BoardWriteFragment()
             BOARD_SEARCH_FRAGMENT -> BoardSearchFragment()
             SEARCH_ANIMAL_FRAGMENT -> SearchAnimalFragment()
+            MYPAGE_FRAGMENT -> MyPageFragment()
 
             else -> Fragment()
         }
@@ -103,6 +105,10 @@ class MainActivity : AppCompatActivity() {
                         replaceFragment(SEARCH_ANIMAL_FRAGMENT, false, null)
                         return@setOnItemSelectedListener true
                     }
+                    R.id.my_menu -> {
+                        replaceFragment(MYPAGE_FRAGMENT, false, null)
+                        return@setOnItemSelectedListener true
+                    }
 
                     else -> return@setOnItemSelectedListener false
                 }
@@ -126,6 +132,7 @@ class MainActivity : AppCompatActivity() {
         val BOARD_WRITE_FRAGMENT = "BoardWriteFragment"
         val BOARD_SEARCH_FRAGMENT = "BoardSearchFragment"
         val SEARCH_ANIMAL_FRAGMENT = "SearchAnimalFragment"
+        val MYPAGE_FRAGMENT = "MyPageFragment"
     }
 
 }
