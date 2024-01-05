@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="정말 컴펫홈을\n떠나실 건가요?"
+        android:textAlignment="center"
+        android:textAppearance="@style/Typography.extrabold24" />
+
+    <Button
+        android:id="@+id/button_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/bg_rect_orange_r10"
+        android:text="다시 생각해 볼게요"
+        android:textAlignment="center"
+        android:textAppearance="@style/Typography.medium24" />
+
+    <Button
+        android:id="@+id/button_withdraw"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_rect_beige_r10"
+        android:text="회원 탈퇴"
+        android:textAlignment="center"
+        android:textAppearance="@style/Typography.medium24"
+        app:backgroundTint="@null" />
+
+</LinearLayout>
