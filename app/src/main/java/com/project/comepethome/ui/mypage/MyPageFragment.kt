@@ -37,6 +37,12 @@ class MyPageFragment : Fragment() {
                 mainActivity.hideBottomNavigationView()
             }
 
+            // 관심 동물
+            linearLayoutLikeAnimalMyPage.setOnClickListener {
+                mainActivity.replaceFragment(MainActivity.MYPAGE_LIKE_ANIMAL_FRAGMENT, true, null)
+                mainActivity.hideBottomNavigationView()
+            }
+
         }
     }
 
