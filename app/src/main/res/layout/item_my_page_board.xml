@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <Button
+        android:id="@+id/button_board_type_item_myPage_board"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="게시판 타입"
+        android:textAppearance="@style/Typography.medium14"
+        android:textSize="10dp" />
+
+    <TextView
+        android:id="@+id/textView_board_title_item_myPage_board"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="저희집 강아지를 소개합니다"
+        android:textAppearance="@style/Typography.medium20" />
+
+    <TextView
+        android:id="@+id/textView_board_contents_item_myPage_board"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="게시판 내용 : 저희 집 강아지 예쁘죠!!"
+        android:textAppearance="@style/Typography.regular14"
+        android:textSize="12dp" />
+
+    <TextView
+        android:id="@+id/textView_board_date_item_myPage_board"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:gravity="end"
+        android:text="1일 전"
+        android:textAppearance="@style/Typography.regular14"
+        android:textColor="@color/gray200"
+        android:textSize="12dp" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

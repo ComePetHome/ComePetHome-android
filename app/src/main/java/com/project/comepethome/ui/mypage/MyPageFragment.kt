@@ -43,6 +43,12 @@ class MyPageFragment : Fragment() {
                 mainActivity.hideBottomNavigationView()
             }
 
+            // 게시판 작성글/댓글
+            linearLayoutBoardMyPage.setOnClickListener {
+                mainActivity.replaceFragment(MainActivity.MYPAGE_BOARD_FRAGMENT, true, null)
+                mainActivity.hideBottomNavigationView()
+            }
+
         }
     }
 

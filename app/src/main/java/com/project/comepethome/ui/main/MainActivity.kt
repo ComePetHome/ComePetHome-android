@@ -19,6 +19,7 @@ import com.project.comepethome.ui.join.JoinFragment
 import com.project.comepethome.ui.login.LogInFragment
 import com.project.comepethome.ui.mypage.ChangeNicknameFragment
 import com.project.comepethome.ui.mypage.ChangePhoneNumberFragment
+import com.project.comepethome.ui.mypage.MyPageBoardFragment
 import com.project.comepethome.ui.mypage.MyPageFragment
 import com.project.comepethome.ui.mypage.MyPageLikeAnimalFragment
 import com.project.comepethome.ui.mypage.MyPageModifyFragment
@@ -61,6 +62,7 @@ class MainActivity : AppCompatActivity() {
             CHANGE_NICKNAME_FRAGMENT -> ChangeNicknameFragment()
             CHANGE_PHONE_NUMBER_FRAGMENT -> ChangePhoneNumberFragment()
             MYPAGE_LIKE_ANIMAL_FRAGMENT -> MyPageLikeAnimalFragment()
+            MYPAGE_BOARD_FRAGMENT -> MyPageBoardFragment()
 
             else -> Fragment()
         }
@@ -145,6 +147,7 @@ class MainActivity : AppCompatActivity() {
         val CHANGE_NICKNAME_FRAGMENT = "ChangeNicknameFragment"
         val CHANGE_PHONE_NUMBER_FRAGMENT = "ChangePhoneNumberFragment"
         val MYPAGE_LIKE_ANIMAL_FRAGMENT = "MyPageLikeAnimalFragment"
+        val MYPAGE_BOARD_FRAGMENT = "MyPageBoardFragment"
     }
 
 }
