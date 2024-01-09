@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.home.PetInfoFragment">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/materialToolbar_pet_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize"
+        android:paddingEnd="10dp"
+        android:theme="?attr/actionBarTheme"
+        app:menu="@menu/menu_like"
+        app:title="크롱"
+        app:titleCentered="true"
+        app:titleTextAppearance="@style/Typography.medium16" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="26dp">
+
+                <ImageView
+                    android:id="@+id/image_pet_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="330dp"
+                    android:scaleType="center"
+                    android:src="@drawable/img_dog" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <Button
+                    android:id="@+id/button_animal_type_pet_info"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:backgroundTint="@color/beige"
+                    android:text="개"
+                    android:textAppearance="@style/Typography.regular14"
+                    android:textColor="@color/black" />
+
+                <Button
+                    android:id="@+id/button_animal_breed_pet_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:backgroundTint="@color/beige"
+                    android:text="믹스견"
+                    android:textAppearance="@style/Typography.regular14"
+                    android:textColor="@color/black" />
+
+                <Button
+                    android:id="@+id/button_animal_age_pet_info"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/beige"
+                    android:text="3살"
+                    android:textAppearance="@style/Typography.regular14"
+                    android:textColor="@color/black" />
+
+                <Button
+                    android:id="@+id/button_animal_weight_pet_info"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/beige"
+                    android:text="5kg"
+                    android:textAppearance="@style/Typography.regular14"
+                    android:textColor="@color/black" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <Button
+                android:id="@+id/button_animal_adoption_status_pet_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/beige"
+                android:text="입양대기"
+                android:textAppearance="@style/Typography.regular14"
+                android:textColor="@color/black" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="입소날짜 |"
+                    android:textAppearance="@style/Typography.regular16" />
+
+                <TextView
+                    android:id="@+id/text_admission_date_pet_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="2023-11-27"
+                    android:textAppearance="@style/Typography.medium16" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="보호센터 |"
+                    android:textAppearance="@style/Typography.regular16" />
+
+                <TextView
+                    android:id="@+id/text_center_name_pet_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="노원 댕댕 하우스"
+                    android:textAppearance="@style/Typography.medium16" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/layout_map_pet_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textView_map_status_pet_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="지도보기"
+                        android:textAppearance="@font/jamsil_2_light"
+                        android:textColor="@color/gray200"
+                        android:textSize="12dp" />
+
+                    <ImageView
+                        android:id="@+id/image_map_status_pet_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:paddingTop="4dp"
+                        android:src="@drawable/ic_open" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="@color/beige"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="동물소개"
+                        android:textAppearance="@style/Typography.regular16" />
+
+                    <TextView
+                        android:id="@+id/textView_introduction_pet_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="둥글둥글하고 부드러운 어감이 들어서 붙여준 이름 ‘보리’. 보리는 사람을 정말 좋아하고, 특히 쓰다듬어 주는 것을 좋아해요. 사람이랑 같이 있으면 다리 사이로 들어가서 얼굴도 비비고 애교가 정말 많은 보리! 동시에 보리는 겁이 정말 많은 아이에요. 좋아하는 사람이 곁에 있어도 아직 바깥을 무서워하는 모습을 보입니다. 아직 사회성이 조금 부족해서 다른 동물 친구들을 만나면 피하거나, 밖에 나가면 걷지 않으려고 하며 구석으로 들어가려고 해요. 그래서 현재 보리는 센터에서 산책훈련이나 다른 강아지들과의 교감 등 다양한 교육을 통해, 조금씩 사회성을 키우면서 점점 씩씩하게 발전하고 있답니다. 보리는 사람한테 낯가림 없이 금방 친해지는 순딩이에요. 사람의 애정을 많이 필요로 하는 아이에요"
+                        android:textAppearance="@font/jamsil_2_light"
+                        android:textSize="14dp" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/button_video_pet_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/bg_rect_orange_r10"
+                android:text="동물 영상 보기"
+                android:textAppearance="@style/Typography.medium24" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </ScrollView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

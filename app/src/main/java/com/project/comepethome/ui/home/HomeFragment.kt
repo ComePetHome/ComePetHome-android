@@ -35,7 +35,7 @@ class HomeFragment : Fragment() {
     private fun initRecyclerView() {
         val recyclerView = binding.recyclerViewHome
         recyclerView.layoutManager = GridLayoutManager(context, 2)
-        recyclerView.adapter = HomeAdapter()
+        recyclerView.adapter = HomeAdapter(mainActivity)
 
     }
 

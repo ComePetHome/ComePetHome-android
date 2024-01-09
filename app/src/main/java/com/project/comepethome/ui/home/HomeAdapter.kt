@@ -6,8 +6,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.project.comepethome.databinding.ItemHomePetListBinding
+import com.project.comepethome.ui.main.MainActivity
 
-class HomeAdapter: RecyclerView.Adapter<HomeAdapter.HomeViewHolder>(){
+class HomeAdapter(val mainActivity: MainActivity): RecyclerView.Adapter<HomeAdapter.HomeViewHolder>(){
 
     inner class HomeViewHolder(binding: ItemHomePetListBinding): RecyclerView.ViewHolder(binding.root) {
 
@@ -19,6 +20,12 @@ class HomeAdapter: RecyclerView.Adapter<HomeAdapter.HomeViewHolder>(){
             itemPetLikeImage = binding.imageItemPetLike
             itemPetImage = binding.imageItemPet
             itemPetInfoTextView = binding.textViewItemPetInfo
+
+            // 동물 클릭시 이벤트
+            binding.root.setOnClickListener {
+                mainActivity.replaceFragment(MainActivity.PET_INFO_FRAGMENT, true, null)
+            }
+
         }
 
     }
