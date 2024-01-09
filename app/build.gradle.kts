@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -7,6 +9,11 @@ android {
     namespace = "com.project.comepethome"
     compileSdk = 33
 
+    // Properties() 객체 선언
+    val properties = Properties()
+    properties.load(project.rootProject.file("local.properties").inputStream())
+    val naverClientID = properties["NAVER_CLIENT_ID"] ?: ""
+
     defaultConfig {
         applicationId = "com.project.comepethome"
         minSdk = 24
@@ -15,6 +22,9 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "NAVER_CLIENT_ID", "$naverClientID")
+        resValue("string", "NAVER_CLIENT_ID", "$naverClientID")
     }
 
     buildTypes {
@@ -51,4 +61,7 @@ dependencies {
 
     // lottie
     implementation("com.airbnb.android:lottie:6.3.0")
+
+    // 네이버 지도 SDK
+    implementation("com.naver.maps:map-sdk:3.17.0")
 }
