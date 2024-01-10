@@ -39,6 +39,11 @@ class MyPageModifyFragment : Fragment() {
                 }
             }
 
+            // 수정하기
+            buttonMyPageModify.setOnClickListener {
+                mainActivity.removeFragment(MainActivity.MYPAGE_MODIFY_FRAGMENT)
+            }
+
             // 로그아웃
             textViewLogoutMyPageModify.setOnClickListener {
                 mainActivity.replaceFragment(MainActivity.LOG_IN_FRAGMENT, false, null)
