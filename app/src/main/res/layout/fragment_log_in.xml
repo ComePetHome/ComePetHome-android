@@ -26,15 +26,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:hint="아이디"
-        android:textColorHint="@color/gray200"
-        app:boxStrokeColor="@color/black"
-        app:hintTextColor="@color/black">
+        app:endIconMode="clear_text"
+        app:hintEnabled="false">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editText_id_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/shape_edit_text"
+            android:hint="아이디"
             android:inputType="text"
             android:textAppearance="@style/Typography.regular18" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -43,15 +43,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:hint="비밀번호"
-        android:textColorHint="@color/gray200"
-        app:boxStrokeColor="@color/black"
-        app:hintTextColor="@color/black">
+        app:endIconMode="clear_text"
+        app:hintEnabled="false">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editText_password_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/shape_edit_text"
+            android:hint="비밀번호"
             android:inputType="textPassword"
             android:textAppearance="@style/Typography.regular18" />
     </com.google.android.material.textfield.TextInputLayout>
