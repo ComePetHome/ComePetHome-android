@@ -43,6 +43,9 @@ class PetInfoFragment : Fragment(), OnMapReadyCallback {
 
     private fun initUI() {
         binding.run {
+
+            mainActivity.showBottomNavigationView()
+
             materialToolbarPetInfo.run {
                 setNavigationIcon(R.drawable.ic_back_24dp)
                 setNavigationOnClickListener {
@@ -64,6 +67,11 @@ class PetInfoFragment : Fragment(), OnMapReadyCallback {
                 layoutMapPetInfo.setOnClickListener {
                     isMapOpen = !isMapOpen
                     mapState()
+                }
+
+                // 동물 영상 보기 클릭시
+                buttonVideoPetInfo.setOnClickListener {
+                    mainActivity.replaceFragment(MainActivity.PET_INFO_VIDEO_FRAGMENT, true, null)
                 }
 
             }
