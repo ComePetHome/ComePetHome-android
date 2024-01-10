@@ -41,10 +41,13 @@ class JoinPasswordFragment : Fragment() {
             val editTextCheckPassword = binding.editTextCheckPasswordJoinPassword.text.toString()
             val layoutCheckPasswordLayout = binding.textInputLayoutCheckPasswordJoinPassword
 
-            if (editTextPassword == editTextCheckPassword) {
+            if (editTextPassword == editTextCheckPassword && editTextPassword.isNotEmpty() && editTextCheckPassword.isNotEmpty()) {
                 // Passwords match, clear error
                 layoutCheckPasswordLayout.error = null
+                mainActivity.replaceFragment(MainActivity.JOIN_NICKNAME_FRAGMENT, true, null)
 
+            } else if (editTextPassword.isEmpty() or editTextCheckPassword.isEmpty()) {
+                layoutCheckPasswordLayout.error = "비밀번호를 입력해주세요"
             } else {
                 // Passwords don't match, set error
                 layoutCheckPasswordLayout.error = "비밀번호가 일치하지 않습니다."
