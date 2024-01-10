@@ -28,26 +28,48 @@
 
         <ImageView
             android:id="@+id/image_user_profile_myPage"
-            android:layout_width="76dp"
-            android:layout_height="60dp"
+            android:layout_width="92dp"
+            android:layout_height="92dp"
             android:layout_marginTop="10dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/ic_profile_24dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView_user_name_myPage"
+            android:id="@+id/textView_user_nickname_myPage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="50dp"
             android:text="홍길동"
-            android:textAppearance="@style/Typography.regular22"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/image_user_profile_myPage" />
+            android:textAppearance="@style/Typography.regular18"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image_user_profile_myPage"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.4" />
+
+        <TextView
+            android:id="@+id/textView_user_id_myPage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="6dp"
+            android:text="hong1234"
+            android:textAppearance="@style/Typography.regular14"
+            android:textColor="@color/gray250"
+            app:layout_constraintStart_toEndOf="@+id/image_user_profile_myPage"
+            app:layout_constraintTop_toBottomOf="@+id/textView_user_nickname_myPage" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginEnd="14dp"
+        android:background="@color/beige" />
 
     <LinearLayout
         android:id="@+id/linearLayout_modify_myPage"
