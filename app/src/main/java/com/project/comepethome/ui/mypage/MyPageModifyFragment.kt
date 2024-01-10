@@ -39,11 +39,6 @@ class MyPageModifyFragment : Fragment() {
                 }
             }
 
-            // 휴대폰 번호 변경
-            linearLayoutPhoneNumberMyPageModify.setOnClickListener {
-                mainActivity.replaceFragment(MainActivity.CHANGE_PHONE_NUMBER_FRAGMENT, true, null)
-            }
-
             // 로그아웃
             textViewLogoutMyPageModify.setOnClickListener {
                 mainActivity.replaceFragment(MainActivity.LOG_IN_FRAGMENT, false, null)
