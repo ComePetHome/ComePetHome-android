@@ -5,22 +5,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.project.comepethome.R
-import com.project.comepethome.databinding.FragmentJoinBinding
+import com.project.comepethome.databinding.FragmentJoinIdBinding
 import com.project.comepethome.ui.main.MainActivity
 
 
-class JoinFragment : Fragment() {
+class JoinIDFragment : Fragment() {
 
     lateinit var mainActivity: MainActivity
-    lateinit var binding: FragmentJoinBinding
+    lateinit var binding: FragmentJoinIdBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
         mainActivity = activity as MainActivity
-        binding = FragmentJoinBinding.inflate(layoutInflater)
+        binding = FragmentJoinIdBinding.inflate(layoutInflater)
 
         closeButton()
         joinButton()
@@ -30,7 +29,7 @@ class JoinFragment : Fragment() {
 
     private fun closeButton() {
         binding.imageCloseJoin.setOnClickListener {
-            mainActivity.removeFragment(MainActivity.JOIN_FRAGMENT)
+            mainActivity.removeFragment(MainActivity.JOIN_ID_FRAGMENT)
         }
     }
 

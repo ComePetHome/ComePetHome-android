@@ -87,7 +87,7 @@ class LogInFragment : Fragment() {
 
     private fun moveToJoin() {
         binding.textViewJoinLogin.setOnClickListener {
-            mainActivity.replaceFragment(MainActivity.JOIN_FRAGMENT, true, null)
+            mainActivity.replaceFragment(MainActivity.JOIN_ID_FRAGMENT, true, null)
         }
     }
 

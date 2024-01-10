@@ -17,7 +17,7 @@ import com.project.comepethome.ui.find.FindPasswordFragment
 import com.project.comepethome.ui.home.HomeFragment
 import com.project.comepethome.ui.home.PetInfoFragment
 import com.project.comepethome.ui.home.PetInfoVideoFragment
-import com.project.comepethome.ui.join.JoinFragment
+import com.project.comepethome.ui.join.JoinIDFragment
 import com.project.comepethome.ui.login.LogInFragment
 import com.project.comepethome.ui.mypage.MyPageBoardFragment
 import com.project.comepethome.ui.mypage.MyPageFragment
@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         // 새로운 Fragment를 담을 변수
         newFragment = when(name){
             LOG_IN_FRAGMENT -> LogInFragment()
-            JOIN_FRAGMENT -> JoinFragment()
+            JOIN_ID_FRAGMENT -> JoinIDFragment()
             FIND_ID_FRAGMENT -> FindIdFragment()
             FIND_ID_COMPLETE_FRAGMENT -> FindIdCompleteFragment()
             FIND_PASSWORD_FRAGMENT -> FindPasswordFragment()
@@ -132,7 +132,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         val LOG_IN_FRAGMENT = "LogInFragment"
-        val JOIN_FRAGMENT = "JoinFragment"
+        val JOIN_ID_FRAGMENT = "JoinIDFragment"
         val FIND_ID_FRAGMENT = "FindIdFragment"
         val FIND_ID_COMPLETE_FRAGMENT = "FindIdCompleteFragment"
         val FIND_PASSWORD_FRAGMENT = "FindPasswordFragment"
