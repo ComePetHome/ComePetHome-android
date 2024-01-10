@@ -18,6 +18,7 @@ import com.project.comepethome.ui.home.HomeFragment
 import com.project.comepethome.ui.home.PetInfoFragment
 import com.project.comepethome.ui.home.PetInfoVideoFragment
 import com.project.comepethome.ui.join.JoinIDFragment
+import com.project.comepethome.ui.join.JoinPasswordFragment
 import com.project.comepethome.ui.login.LogInFragment
 import com.project.comepethome.ui.mypage.MyPageBoardFragment
 import com.project.comepethome.ui.mypage.MyPageFragment
@@ -48,6 +49,7 @@ class MainActivity : AppCompatActivity() {
         newFragment = when(name){
             LOG_IN_FRAGMENT -> LogInFragment()
             JOIN_ID_FRAGMENT -> JoinIDFragment()
+            JOIN_PASSWORD_FRAGMENT -> JoinPasswordFragment()
             FIND_ID_FRAGMENT -> FindIdFragment()
             FIND_ID_COMPLETE_FRAGMENT -> FindIdCompleteFragment()
             FIND_PASSWORD_FRAGMENT -> FindPasswordFragment()
@@ -133,6 +135,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         val LOG_IN_FRAGMENT = "LogInFragment"
         val JOIN_ID_FRAGMENT = "JoinIDFragment"
+        val JOIN_PASSWORD_FRAGMENT = "JoinPasswordFragment"
         val FIND_ID_FRAGMENT = "FindIdFragment"
         val FIND_ID_COMPLETE_FRAGMENT = "FindIdCompleteFragment"
         val FIND_PASSWORD_FRAGMENT = "FindPasswordFragment"

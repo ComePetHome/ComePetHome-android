@@ -66,7 +66,7 @@ class JoinIDFragment : Fragment() {
 
     private fun joinButton() {
         binding.buttonNextJoinId.setOnClickListener {
-            
+            mainActivity.replaceFragment(MainActivity.JOIN_PASSWORD_FRAGMENT, true, null)
         }
     }
 
