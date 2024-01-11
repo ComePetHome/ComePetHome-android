@@ -8,13 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.project.comepethome.R
-import com.project.comepethome.databinding.FragmentJoinNicknameBinding
+import com.project.comepethome.databinding.FragmentJoinNameBinding
 import com.project.comepethome.ui.main.MainActivity
 
-class JoinNicknameFragment : Fragment() {
+class JoinNameFragment : Fragment() {
 
     lateinit var mainActivity: MainActivity
-    lateinit var binding: FragmentJoinNicknameBinding
+    lateinit var binding: FragmentJoinNameBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,26 +22,26 @@ class JoinNicknameFragment : Fragment() {
     ): View? {
 
         mainActivity = activity as MainActivity
-        binding = FragmentJoinNicknameBinding.inflate(layoutInflater)
+        binding = FragmentJoinNameBinding.inflate(layoutInflater)
 
         closeButton()
-        enterNickname()
+        enterName()
         moveToNext()
 
         return binding.root
     }
 
     private fun closeButton() {
-        binding.imageCloseJoinNickname.setOnClickListener {
-            mainActivity.removeFragment(MainActivity.JOIN_NICKNAME_FRAGMENT)
+        binding.imageCloseJoinName.setOnClickListener {
+            mainActivity.removeFragment(MainActivity.JOIN_NAME_FRAGMENT)
         }
     }
 
-    private fun enterNickname() {
-        val editTextNickname = binding.editTextNicknameJoinNickname
-        val nextButton = binding.buttonNextJoinNickname
+    private fun enterName() {
+        val editTextName = binding.editTextNameJoinName
+        val nextButton = binding.buttonNextJoinName
 
-        editTextNickname.addTextChangedListener(object : TextWatcher {
+        editTextName.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 // No implementation needed
             }
@@ -64,9 +64,9 @@ class JoinNicknameFragment : Fragment() {
     }
 
     private fun moveToNext() {
-        binding.buttonNextJoinNickname.setOnClickListener {
-            if (binding.editTextNicknameJoinNickname.text?.isNotEmpty() == true) {
-                mainActivity.replaceFragment(MainActivity.JOIN_NAME_FRAGMENT, true, null)
+        binding.buttonNextJoinName.setOnClickListener {
+            if (binding.editTextNameJoinName.text?.isNotEmpty() == true) {
+
             }
         }
     }

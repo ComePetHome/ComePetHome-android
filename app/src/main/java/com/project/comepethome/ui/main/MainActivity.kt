@@ -18,6 +18,7 @@ import com.project.comepethome.ui.home.HomeFragment
 import com.project.comepethome.ui.home.PetInfoFragment
 import com.project.comepethome.ui.home.PetInfoVideoFragment
 import com.project.comepethome.ui.join.JoinIDFragment
+import com.project.comepethome.ui.join.JoinNameFragment
 import com.project.comepethome.ui.join.JoinNicknameFragment
 import com.project.comepethome.ui.join.JoinPasswordFragment
 import com.project.comepethome.ui.login.LogInFragment
@@ -52,6 +53,7 @@ class MainActivity : AppCompatActivity() {
             JOIN_ID_FRAGMENT -> JoinIDFragment()
             JOIN_PASSWORD_FRAGMENT -> JoinPasswordFragment()
             JOIN_NICKNAME_FRAGMENT -> JoinNicknameFragment()
+            JOIN_NAME_FRAGMENT -> JoinNameFragment()
             FIND_ID_FRAGMENT -> FindIdFragment()
             FIND_ID_COMPLETE_FRAGMENT -> FindIdCompleteFragment()
             FIND_PASSWORD_FRAGMENT -> FindPasswordFragment()
@@ -139,6 +141,7 @@ class MainActivity : AppCompatActivity() {
         val JOIN_ID_FRAGMENT = "JoinIDFragment"
         val JOIN_PASSWORD_FRAGMENT = "JoinPasswordFragment"
         val JOIN_NICKNAME_FRAGMENT = "JoinNicknameFragment"
+        val JOIN_NAME_FRAGMENT = "JoinNameFragment"
         val FIND_ID_FRAGMENT = "FindIdFragment"
         val FIND_ID_COMPLETE_FRAGMENT = "FindIdCompleteFragment"
         val FIND_PASSWORD_FRAGMENT = "FindPasswordFragment"
