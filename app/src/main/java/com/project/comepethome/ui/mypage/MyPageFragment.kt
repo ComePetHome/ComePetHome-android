@@ -49,6 +49,11 @@ class MyPageFragment : Fragment() {
                 mainActivity.hideBottomNavigationView()
             }
 
+            // 로그인 하러가기
+            layoutGotoLogin.setOnClickListener {
+                mainActivity.replaceFragment(MainActivity.LOG_IN_FRAGMENT, false, null)
+            }
+
         }
     }
 
