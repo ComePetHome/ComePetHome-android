@@ -26,6 +26,8 @@ class HomeFragment : Fragment() {
         mainActivity = activity as MainActivity
         binding = FragmentHomeBinding.inflate(layoutInflater)
 
+        mainActivity.bottomNavigation()
+
         initRecyclerView()
         moveToSearchAnimal()
 
