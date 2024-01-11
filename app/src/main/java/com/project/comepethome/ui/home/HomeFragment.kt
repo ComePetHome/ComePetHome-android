@@ -26,12 +26,19 @@ class HomeFragment : Fragment() {
         mainActivity = activity as MainActivity
         binding = FragmentHomeBinding.inflate(layoutInflater)
 
-        mainActivity.bottomNavigation()
+        initUI()
 
         initRecyclerView()
         moveToSearchAnimal()
 
         return binding.root
+    }
+
+    private fun initUI() {
+        binding.run {
+            mainActivity.bottomNavigation()
+            mainActivity.activityMainBinding.bottomNavigationViewMain.visibility = View.VISIBLE
+        }
     }
 
     private fun initRecyclerView() {

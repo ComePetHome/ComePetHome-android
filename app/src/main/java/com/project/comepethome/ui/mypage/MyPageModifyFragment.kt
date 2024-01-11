@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.project.comepethome.R
@@ -46,8 +47,12 @@ class MyPageModifyFragment : Fragment() {
 
             // 로그아웃
             textViewLogoutMyPageModify.setOnClickListener {
-                mainActivity.replaceFragment(MainActivity.LOG_IN_FRAGMENT, false, null)
-                Snackbar.make(binding.root, "로그아웃 되었습니다.", Snackbar.LENGTH_SHORT).show()
+                mainActivity.removeAllBackStack()
+                mainActivity.selectBottomNavigationItem(R.id.home_menu)
+
+                val snackbar = Snackbar.make(binding.root, "로그아웃 되었습니다.", Snackbar.LENGTH_SHORT)
+                snackbar.view.elevation = 0f
+                snackbar.show()
             }
 
             // 회원탈퇴
@@ -63,9 +68,12 @@ class MyPageModifyFragment : Fragment() {
 
                 itemUserWithdrawBinding.buttonWithdraw.setOnClickListener {
                     dialog.dismiss()
-                    mainActivity.removeFragment(MainActivity.MYPAGE_MODIFY_FRAGMENT)
-                    mainActivity.replaceFragment(MainActivity.LOG_IN_FRAGMENT, false, null)
-                    Snackbar.make(binding.root, "회원탈퇴 되었습니다.", Snackbar.LENGTH_SHORT).show()
+                    mainActivity.removeAllBackStack()
+                    mainActivity.selectBottomNavigationItem(R.id.home_menu)
+
+                    val snackbar = Snackbar.make(binding.root, "회원탈퇴 되었습니다.", Snackbar.LENGTH_SHORT)
+                    snackbar.view.elevation = 0f
+                    snackbar.show()
                 }
 
                 dialog.show()

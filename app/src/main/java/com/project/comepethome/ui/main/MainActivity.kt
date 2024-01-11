@@ -138,6 +138,11 @@ class MainActivity : AppCompatActivity() {
         activityMainBinding.bottomNavigationViewMain.selectedItemId = itemId
     }
 
+    fun removeAllBackStack() {
+        val fragmentManager = supportFragmentManager
+        fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+    }
+
     companion object {
         val LOG_IN_FRAGMENT = "LogInFragment"
         val JOIN_ID_FRAGMENT = "JoinIDFragment"
