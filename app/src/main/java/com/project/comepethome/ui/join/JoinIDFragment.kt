@@ -3,6 +3,7 @@ package com.project.comepethome.ui.join
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,9 @@ class JoinIDFragment : Fragment() {
 
     lateinit var mainActivity: MainActivity
     lateinit var binding: FragmentJoinIdBinding
+
+    val TAG = "JoinIDFragment"
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -66,7 +70,14 @@ class JoinIDFragment : Fragment() {
 
     private fun joinButton() {
         binding.buttonNextJoinId.setOnClickListener {
-            mainActivity.replaceFragment(MainActivity.JOIN_PASSWORD_FRAGMENT, true, null)
+            val joinId = binding.editTextIdJoinId.text.toString()
+
+            if (joinId.isNotEmpty()) {
+                val bundle = Bundle()
+                bundle.putString("joinId", joinId)
+
+                mainActivity.replaceFragment(MainActivity.JOIN_PASSWORD_FRAGMENT, true, bundle)
+            }
         }
     }
 
