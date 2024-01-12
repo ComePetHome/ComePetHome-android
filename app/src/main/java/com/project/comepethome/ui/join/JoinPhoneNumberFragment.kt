@@ -3,6 +3,7 @@ package com.project.comepethome.ui.join
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,13 @@ class JoinPhoneNumberFragment : Fragment() {
     lateinit var mainActivity: MainActivity
     lateinit var binding: FragmentJoinPhoneNumberBinding
 
+    lateinit var joinId: String
+    lateinit var joinPassword: String
+    lateinit var joinNickname: String
+    lateinit var joinName: String
+
+    val TAG = "JoinPhoneNumberFragment"
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,6 +33,11 @@ class JoinPhoneNumberFragment : Fragment() {
 
         mainActivity = activity as MainActivity
         binding = FragmentJoinPhoneNumberBinding.inflate(layoutInflater)
+
+        joinId = arguments?.getString("joinId").toString()
+        joinPassword = arguments?.getString("joinPassword").toString()
+        joinNickname = arguments?.getString("joinNickname").toString()
+        joinName = arguments?.getString("joinName").toString()
 
         closeButton()
         enterPhoneNumber()
@@ -72,6 +85,8 @@ class JoinPhoneNumberFragment : Fragment() {
 
                 // Remove all fragments from the back stack
                 fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+
+                val joinPhoneNumber = binding.editTextPhoneNumberJoinPhoneNumber.text.toString()
 
                 mainActivity.replaceFragment(MainActivity.LOG_IN_FRAGMENT, false, null)
             }

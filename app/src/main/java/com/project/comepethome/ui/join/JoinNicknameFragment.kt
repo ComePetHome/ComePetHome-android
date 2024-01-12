@@ -3,6 +3,7 @@ package com.project.comepethome.ui.join
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,11 @@ class JoinNicknameFragment : Fragment() {
     lateinit var mainActivity: MainActivity
     lateinit var binding: FragmentJoinNicknameBinding
 
+    lateinit var joinId: String
+    lateinit var joinPassword: String
+
+    val TAG = "JoinNicknameFragment"
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -23,6 +29,9 @@ class JoinNicknameFragment : Fragment() {
 
         mainActivity = activity as MainActivity
         binding = FragmentJoinNicknameBinding.inflate(layoutInflater)
+
+        joinId = arguments?.getString("joinId").toString()
+        joinPassword = arguments?.getString("joinPassword").toString()
 
         closeButton()
         enterNickname()
@@ -66,7 +75,15 @@ class JoinNicknameFragment : Fragment() {
     private fun moveToNext() {
         binding.buttonNextJoinNickname.setOnClickListener {
             if (binding.editTextNicknameJoinNickname.text?.isNotEmpty() == true) {
-                mainActivity.replaceFragment(MainActivity.JOIN_NAME_FRAGMENT, true, null)
+
+                val joinNickname = binding.editTextNicknameJoinNickname.text.toString()
+
+                val bundle = Bundle()
+                bundle.putString("joinId", joinId)
+                bundle.putString("joinPassword", joinPassword)
+                bundle.putString("joinNickname", joinNickname)
+
+                mainActivity.replaceFragment(MainActivity.JOIN_NAME_FRAGMENT, true, bundle)
             }
         }
     }
