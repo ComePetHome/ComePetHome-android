@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.project.comepethome"
-    compileSdk = 33
+    compileSdk = 34
 
     // Properties() 객체 선언
     val properties = Properties()
@@ -64,4 +64,11 @@ dependencies {
 
     // 네이버 지도 SDK
     implementation("com.naver.maps:map-sdk:3.17.0")
+
+    // retrofit2
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    // viewmodel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
 }

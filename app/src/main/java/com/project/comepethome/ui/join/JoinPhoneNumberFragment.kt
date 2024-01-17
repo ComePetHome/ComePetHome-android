@@ -1,6 +1,7 @@
 package com.project.comepethome.ui.join
 
 import android.os.Bundle
+import android.telephony.PhoneNumberFormattingTextWatcher
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -9,6 +10,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
 import com.project.comepethome.R
 import com.project.comepethome.databinding.FragmentJoinPhoneNumberBinding
 import com.project.comepethome.ui.main.MainActivity
@@ -24,6 +27,8 @@ class JoinPhoneNumberFragment : Fragment() {
     lateinit var joinNickname: String
     lateinit var joinName: String
 
+    private lateinit var viewModel: JoinViewModel
+
     val TAG = "JoinPhoneNumberFragment"
 
     override fun onCreateView(
@@ -38,6 +43,8 @@ class JoinPhoneNumberFragment : Fragment() {
         joinPassword = arguments?.getString("joinPassword").toString()
         joinNickname = arguments?.getString("joinNickname").toString()
         joinName = arguments?.getString("joinName").toString()
+
+        viewModel = ViewModelProvider(this)[JoinViewModel::class.java]
 
         closeButton()
         enterPhoneNumber()
@@ -76,19 +83,40 @@ class JoinPhoneNumberFragment : Fragment() {
                 )
             }
         })
+
+        // 전화번호를 입력했을시 자동으로 하이픈 생성
+        editTextPhoneNumber.addTextChangedListener(PhoneNumberFormattingTextWatcher())
     }
 
     private fun moveToNext() {
         binding.buttonNextJoinPhoneNumber.setOnClickListener {
             if (binding.editTextPhoneNumberJoinPhoneNumber.text?.isNotEmpty() == true) {
-                val fragmentManager = mainActivity.supportFragmentManager
-
-                // Remove all fragments from the back stack
-                fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-
                 val joinPhoneNumber = binding.editTextPhoneNumberJoinPhoneNumber.text.toString()
 
-                mainActivity.replaceFragment(MainActivity.LOG_IN_FRAGMENT, false, null)
+                viewModel.joinUser(
+                    joinId,
+                    joinPassword,
+                    joinNickname,
+                    joinName,
+                    joinPhoneNumber,
+                    {
+                        // 성공 시
+                        val fragmentManager = mainActivity.supportFragmentManager
+                        fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                        mainActivity.replaceFragment(MainActivity.LOG_IN_FRAGMENT, false, null)
+
+                        val snackbar = Snackbar.make(binding.root, "회원가입이 완료되었습니다.", Snackbar.LENGTH_SHORT)
+                        snackbar.view.elevation = 0f
+                        snackbar.show()
+                    },
+                    { errorMessage ->
+                        // 실패 시
+                        Log.d(TAG, errorMessage)
+                        val snackbar = Snackbar.make(binding.root, "회원가입에 실패하였습니다.", Snackbar.LENGTH_SHORT)
+                        snackbar.view.elevation = 0f
+                        snackbar.show()
+                    }
+                )
             }
         }
     }

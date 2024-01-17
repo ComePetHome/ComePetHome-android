@@ -1,0 +1,8 @@
+package com.project.comepethome.data.model
+
+data class JoinResponse(
+    val message: String,
+    val httpStatus: String,
+    val time: String,
+    val code: Int
+)
