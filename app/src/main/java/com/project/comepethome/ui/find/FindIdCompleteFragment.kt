@@ -1,6 +1,7 @@
 package com.project.comepethome.ui.find
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,11 @@ class FindIdCompleteFragment : Fragment() {
     lateinit var mainActivity: MainActivity
     lateinit var binding: FragmentFindIdCompleteBinding
 
+    lateinit var userName: String
+    lateinit var userId: String
+
+    val TAG = "FindIdCompleteFragment"
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -22,9 +28,18 @@ class FindIdCompleteFragment : Fragment() {
         mainActivity = activity as MainActivity
         binding = FragmentFindIdCompleteBinding.inflate(layoutInflater)
 
+        userName = arguments?.getString("userName").toString()
+        userId = arguments?.getString("userId").toString()
+
+        initUI()
         moveToLogin()
 
         return binding.root
+    }
+
+    private fun initUI() {
+        binding.textViewUserNameFindIdComplete.text = userName
+        binding.textViewUserIdFindIdComplete.text = userId
     }
 
     private fun moveToLogin() {
