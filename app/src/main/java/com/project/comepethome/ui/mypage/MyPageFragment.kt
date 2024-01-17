@@ -31,6 +31,14 @@ class MyPageFragment : Fragment() {
         binding.run {
             mainActivity.showBottomNavigationView()
 
+            if (MainActivity.isLogIn) {
+                layoutLoginStatusYes.visibility = View.VISIBLE
+                layoutLoginStatusNo.visibility = View.GONE
+            } else {
+                layoutLoginStatusYes.visibility = View.GONE
+                layoutLoginStatusNo.visibility = View.VISIBLE
+            }
+
             // 내 정보 수정
             linearLayoutModifyMyPage.setOnClickListener {
                 mainActivity.replaceFragment(MainActivity.MYPAGE_MODIFY_FRAGMENT, true, null)

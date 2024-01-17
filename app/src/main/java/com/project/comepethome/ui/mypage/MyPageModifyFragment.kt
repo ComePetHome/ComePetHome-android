@@ -53,6 +53,8 @@ class MyPageModifyFragment : Fragment() {
                 val snackbar = Snackbar.make(binding.root, "로그아웃 되었습니다.", Snackbar.LENGTH_SHORT)
                 snackbar.view.elevation = 0f
                 snackbar.show()
+
+                MainActivity.isLogIn = false
             }
 
             // 회원탈퇴
@@ -74,6 +76,8 @@ class MyPageModifyFragment : Fragment() {
                     val snackbar = Snackbar.make(binding.root, "회원탈퇴 되었습니다.", Snackbar.LENGTH_SHORT)
                     snackbar.view.elevation = 0f
                     snackbar.show()
+
+                    MainActivity.isLogIn = false
                 }
 
                 dialog.show()

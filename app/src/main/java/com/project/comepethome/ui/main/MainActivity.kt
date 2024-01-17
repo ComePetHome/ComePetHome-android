@@ -144,6 +144,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
+
+        var isLogIn = false
+
         val LOG_IN_FRAGMENT = "LogInFragment"
         val JOIN_ID_FRAGMENT = "JoinIDFragment"
         val JOIN_PASSWORD_FRAGMENT = "JoinPasswordFragment"

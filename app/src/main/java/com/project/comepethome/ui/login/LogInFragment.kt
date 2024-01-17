@@ -66,6 +66,7 @@ class LogInFragment : Fragment() {
 
     private fun moveToLogin() {
         binding.buttonLogin.setOnClickListener {
+            MainActivity.isLogIn = true
             mainActivity.replaceFragment(MainActivity.HOME_FRAGMENT, false, null)
             mainActivity.showBottomNavigationView()
             mainActivity.bottomNavigation()
