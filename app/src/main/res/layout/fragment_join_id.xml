@@ -54,6 +54,16 @@
             android:textAppearance="@style/Typography.regular18" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <TextView
+        android:id="@+id/text_check_id_join_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="20dp"
+        android:text="아이디 중복 확인"
+        android:textAppearance="@style/Typography.regular14"
+        android:textColor="@color/gray200" />
+
     <View
         android:layout_width="0dp"
         android:layout_height="0dp"

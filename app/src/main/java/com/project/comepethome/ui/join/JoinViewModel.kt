@@ -18,4 +18,13 @@ class JoinViewModel : ViewModel() {
     ) {
         joinRepository.joinUser(joinId, joinPassword, joinNickname, joinName, joinPhoneNumber, onSuccess, onError)
     }
+
+    fun checkUserId(
+        userId: String,
+        onSuccess: (String) -> Unit,
+        onError: (String) -> Unit
+    ) {
+        joinRepository.checkUserId(userId, onSuccess, onError)
+    }
+
 }
