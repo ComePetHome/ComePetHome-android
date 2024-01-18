@@ -59,7 +59,7 @@ class MyPageFragment : Fragment() {
 
             // 로그인 하러가기
             layoutGotoLogin.setOnClickListener {
-                mainActivity.replaceFragment(MainActivity.LOG_IN_FRAGMENT, false, null)
+                mainActivity.replaceFragment(MainActivity.LOG_IN_FRAGMENT, true, null)
             }
 
         }
