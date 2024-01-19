@@ -19,6 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title="관심 동물"
+        app:titleCentered="true"
         app:titleTextAppearance="@style/Typography.medium20" />
 
     <androidx.recyclerview.widget.RecyclerView
