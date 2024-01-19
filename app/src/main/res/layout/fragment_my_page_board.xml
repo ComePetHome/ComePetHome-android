@@ -16,6 +16,7 @@
         android:paddingEnd="10dp"
         android:theme="?attr/actionBarTheme"
         app:title="게시판 작성글/댓글"
+        app:titleCentered="true"
         app:titleTextAppearance="@style/Typography.medium20" />
 
     <LinearLayout
@@ -53,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_weight="1"
-            android:background="@color/black" />
+            android:background="@color/orange" />
 
         <View
             android:id="@+id/view_board_comment_line_myPage_board"
