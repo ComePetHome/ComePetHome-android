@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.project.comepethome.R
 import com.project.comepethome.databinding.ActivityMainBinding
+import com.project.comepethome.ui.board.BoardInfoFragment
 import com.project.comepethome.ui.board.BoardMainFragment
 import com.project.comepethome.ui.board.BoardSearchFragment
 import com.project.comepethome.ui.board.BoardWriteFragment
@@ -88,6 +89,7 @@ class MainActivity : AppCompatActivity() {
             FIND_PASSWORD_COMPLETE_FRAGMENT -> FindPasswordCompleteFragment()
             HOME_FRAGMENT -> HomeFragment()
             BOARD_MAIN_FRAGMENT -> BoardMainFragment()
+            BOARD_INFO_FRAGMENT -> BoardInfoFragment()
             BOARD_WRITE_FRAGMENT -> BoardWriteFragment()
             BOARD_SEARCH_FRAGMENT -> BoardSearchFragment()
             SEARCH_ANIMAL_FRAGMENT -> SearchAnimalFragment()
@@ -189,6 +191,7 @@ class MainActivity : AppCompatActivity() {
         val FIND_PASSWORD_COMPLETE_FRAGMENT = "FindPasswordCompleteFragment"
         val HOME_FRAGMENT = "HomeFragment"
         val BOARD_MAIN_FRAGMENT = "BoardMainFragment"
+        val BOARD_INFO_FRAGMENT = "BoardInfoFragment"
         val BOARD_WRITE_FRAGMENT = "BoardWriteFragment"
         val BOARD_SEARCH_FRAGMENT = "BoardSearchFragment"
         val SEARCH_ANIMAL_FRAGMENT = "SearchAnimalFragment"

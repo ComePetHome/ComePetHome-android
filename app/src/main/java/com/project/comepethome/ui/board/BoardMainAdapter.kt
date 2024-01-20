@@ -7,8 +7,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.project.comepethome.databinding.ItemBoardMainListBinding
+import com.project.comepethome.ui.main.MainActivity
 
-class BoardMainAdapter : RecyclerView.Adapter<BoardMainAdapter.BoardMainViewHolder>() {
+class BoardMainAdapter(val mainActivity: MainActivity) : RecyclerView.Adapter<BoardMainAdapter.BoardMainViewHolder>() {
 
     inner class BoardMainViewHolder(binding: ItemBoardMainListBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -34,6 +35,12 @@ class BoardMainAdapter : RecyclerView.Adapter<BoardMainAdapter.BoardMainViewHold
             itemBoard = binding.imageItemBoard
             itemBoardLikeCount = binding.textViewItemBoardLikeCount
             itemBoardCommentCount = binding.textViewItemBoardCommentCount
+
+            // 게시판 클릭시
+            binding.root.setOnClickListener {
+                mainActivity.replaceFragment(MainActivity.BOARD_INFO_FRAGMENT, true, null)
+            }
+
         }
 
     }

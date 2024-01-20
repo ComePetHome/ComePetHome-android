@@ -40,7 +40,7 @@ class BoardMainFragment : Fragment() {
     private fun initRecyclerView() {
         val recyclerView = binding.recyclerViewBoardMain
         recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = BoardMainAdapter()
+        recyclerView.adapter = BoardMainAdapter(mainActivity)
     }
 
     private fun moveToBoardWrite() {

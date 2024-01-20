@@ -71,4 +71,7 @@ dependencies {
 
     // viewmodel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+
+    // dotsindicator
+    implementation("com.tbuonomo:dotsindicator:5.0")
 }
