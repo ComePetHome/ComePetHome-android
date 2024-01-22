@@ -15,7 +15,7 @@ class FindIdRepository {
 
     init {
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://13.124.211.208:9001/")
+            .baseUrl("http://54.180.142.14:9001/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

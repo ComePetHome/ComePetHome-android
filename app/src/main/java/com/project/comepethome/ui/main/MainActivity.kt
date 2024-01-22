@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.google.android.material.snackbar.Snackbar
 import com.project.comepethome.R
 import com.project.comepethome.databinding.ActivityMainBinding
 import com.project.comepethome.ui.board.BoardInfoFragment
@@ -175,9 +176,18 @@ class MainActivity : AppCompatActivity() {
         fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
     }
 
+    fun showSnackbar(message: String) {
+        val snackbar = Snackbar.make(activityMainBinding.root ,message, Snackbar.LENGTH_SHORT)
+        snackbar.view.elevation = 0f
+        snackbar.show()
+    }
+
     companion object {
 
         var isLogIn = false
+
+        var accessToken: String? = null
+        var refreshToken: String? = null
 
         val LOG_IN_FRAGMENT = "LogInFragment"
         val JOIN_ID_FRAGMENT = "JoinIDFragment"
