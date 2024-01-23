@@ -43,11 +43,11 @@ class LogInFragment : Fragment() {
     private fun moveToLogin() {
         binding.buttonLogin.setOnClickListener {
 
-            val loginId = binding.editTextIdLogin.text.toString()
-            val loginPassword = binding.editTextPasswordLogin.text.toString()
+            MainActivity.loginId = binding.editTextIdLogin.text.toString()
+            MainActivity.loginPassword = binding.editTextPasswordLogin.text.toString()
 
-            viewModel.loginUser(loginId,
-                loginPassword,
+            viewModel.loginUser(MainActivity.loginId,
+                MainActivity.loginPassword,
                 { accessToken, refreshToken ->
 
                     MainActivity.isLogIn = true

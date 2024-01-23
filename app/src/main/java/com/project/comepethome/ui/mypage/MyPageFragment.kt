@@ -1,11 +1,12 @@
 package com.project.comepethome.ui.mypage
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.project.comepethome.R
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.project.comepethome.databinding.FragmentMyPageBinding
 import com.project.comepethome.ui.main.MainActivity
 
@@ -13,6 +14,10 @@ class MyPageFragment : Fragment() {
 
     lateinit var mainActivity: MainActivity
     lateinit var binding: FragmentMyPageBinding
+
+    lateinit var myPageViewModel: MyPageViewModel
+
+    val TAG = "MyPageFragment"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,7 +27,10 @@ class MyPageFragment : Fragment() {
         mainActivity = activity as MainActivity
         binding = FragmentMyPageBinding.inflate(layoutInflater)
 
+        myPageViewModel = ViewModelProvider(this)[MyPageViewModel::class.java]
+
         initUi()
+        observeViewModel()
 
         return binding.root
     }
@@ -31,9 +39,12 @@ class MyPageFragment : Fragment() {
         binding.run {
             mainActivity.showBottomNavigationView()
 
-            if (MainActivity.isLogIn) {
+            if (MainActivity.isLogIn && MainActivity.accessToken != null) {
                 layoutLoginStatusYes.visibility = View.VISIBLE
                 layoutLoginStatusNo.visibility = View.GONE
+
+                myPageViewModel.getUserProfile(MainActivity.accessToken!!)
+
             } else {
                 layoutLoginStatusYes.visibility = View.GONE
                 layoutLoginStatusNo.visibility = View.VISIBLE
@@ -61,6 +72,14 @@ class MyPageFragment : Fragment() {
             layoutGotoLogin.setOnClickListener {
                 mainActivity.replaceFragment(MainActivity.LOG_IN_FRAGMENT, true, null)
             }
+        }
+    }
+
+    private fun observeViewModel() {
+        myPageViewModel.userProfileLiveData.observe(viewLifecycleOwner) { userProfile ->
+
+            binding.textViewUserNicknameMyPage.text = userProfile.nickName
+            binding.textViewUserIdMyPage.text = userProfile.userId
 
         }
     }

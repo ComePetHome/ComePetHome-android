@@ -189,6 +189,9 @@ class MainActivity : AppCompatActivity() {
         var accessToken: String? = null
         var refreshToken: String? = null
 
+        var loginId = ""
+        var loginPassword = ""
+
         val LOG_IN_FRAGMENT = "LogInFragment"
         val JOIN_ID_FRAGMENT = "JoinIDFragment"
         val JOIN_PASSWORD_FRAGMENT = "JoinPasswordFragment"
