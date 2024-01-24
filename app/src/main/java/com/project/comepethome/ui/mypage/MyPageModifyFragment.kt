@@ -1,11 +1,14 @@
 package com.project.comepethome.ui.mypage
 
 import android.os.Bundle
+import android.telephony.PhoneNumberFormattingTextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.project.comepethome.R
@@ -18,6 +21,14 @@ class MyPageModifyFragment : Fragment() {
     lateinit var mainActivity: MainActivity
     lateinit var binding: FragmentMyPageModifyBinding
 
+    private lateinit var myPageModifyViewModel: MyPageModifyViewModel
+
+    lateinit var loginUserNickName: String
+    lateinit var loginUserName: String
+    lateinit var loginUserPhoneNumber: String
+
+    val TAG = "MyPageModifyFragment"
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,6 +36,12 @@ class MyPageModifyFragment : Fragment() {
 
         mainActivity = activity as MainActivity
         binding = FragmentMyPageModifyBinding.inflate(layoutInflater)
+
+        myPageModifyViewModel = ViewModelProvider(this)[MyPageModifyViewModel::class.java]
+
+        loginUserNickName = arguments?.getString("loginUserNickName").toString()
+        loginUserName = arguments?.getString("loginUserName").toString()
+        loginUserPhoneNumber = arguments?.getString("loginUserPhoneNumber").toString()
 
         initUi()
 
@@ -40,9 +57,16 @@ class MyPageModifyFragment : Fragment() {
                 }
             }
 
+            // 로그인 한 유저의 닉네임, 이름, 휴대폰 번호 설정
+            editTextNicknameMyPageModify.setText(loginUserNickName)
+            editTextNameMyPageModify.setText(loginUserName)
+            editTextPhoneNumberMyPageModify.setText(loginUserPhoneNumber)
+
+            editTextPhoneNumberMyPageModify.addTextChangedListener(PhoneNumberFormattingTextWatcher())
+
             // 수정하기
             buttonMyPageModify.setOnClickListener {
-                mainActivity.removeFragment(MainActivity.MYPAGE_MODIFY_FRAGMENT)
+                modifyMyInformation()
             }
 
             // 로그아웃
@@ -84,6 +108,28 @@ class MyPageModifyFragment : Fragment() {
             }
 
         }
+    }
+
+    private fun modifyMyInformation() {
+
+        val newNickName = binding.editTextNicknameMyPageModify.text.toString()
+        val newName = binding.editTextNameMyPageModify.text.toString()
+        val newPhoneNumber = binding.editTextPhoneNumberMyPageModify.text.toString()
+
+        if (newNickName.isEmpty() || newName.isEmpty() || newPhoneNumber.isEmpty()) {
+            mainActivity.showSnackbar("입력이 안된 곳이 있습니다.")
+        }else {
+
+            myPageModifyViewModel.modifyUserProfile("${MainActivity.accessToken}",newNickName, newName, newPhoneNumber)
+
+            val bundle = Bundle()
+            bundle.putString("newNickName", newNickName)
+            bundle.putString("newName", newName)
+            bundle.putString("newPhoneNumber", newPhoneNumber)
+
+            mainActivity.replaceFragment(MainActivity.MYPAGE_FRAGMENT, false, bundle)
+        }
+
     }
 
 }

@@ -17,6 +17,17 @@ class MyPageFragment : Fragment() {
 
     lateinit var myPageViewModel: MyPageViewModel
 
+    // MyPageModifyFragment 에 주는 값
+    lateinit var loginUserNickName: String
+    lateinit var loginUserName: String
+    lateinit var loginUserPhoneNumber: String
+
+    // MyPageModifyFragment 으로 부터 받는 값
+    lateinit var newNickName: String
+    lateinit var newName: String
+    lateinit var newPhoneNumber: String
+
+
     val TAG = "MyPageFragment"
 
     override fun onCreateView(
@@ -52,7 +63,13 @@ class MyPageFragment : Fragment() {
 
             // 내 정보 수정
             linearLayoutModifyMyPage.setOnClickListener {
-                mainActivity.replaceFragment(MainActivity.MYPAGE_MODIFY_FRAGMENT, true, null)
+
+                val bundle = Bundle()
+                bundle.putString("loginUserNickName", loginUserNickName)
+                bundle.putString("loginUserName", loginUserName)
+                bundle.putString("loginUserPhoneNumber", loginUserPhoneNumber)
+
+                mainActivity.replaceFragment(MainActivity.MYPAGE_MODIFY_FRAGMENT, true, bundle)
                 mainActivity.hideBottomNavigationView()
             }
 
@@ -78,8 +95,20 @@ class MyPageFragment : Fragment() {
     private fun observeViewModel() {
         myPageViewModel.userProfileLiveData.observe(viewLifecycleOwner) { userProfile ->
 
-            binding.textViewUserNicknameMyPage.text = userProfile.nickName
+            newNickName = arguments?.getString("newNickName") ?: ""
+            newName = arguments?.getString("newName") ?: ""
+            newPhoneNumber = arguments?.getString("newPhoneNumber") ?: ""
+
+            val displayNickName = if (newNickName.isNotEmpty()) newNickName else userProfile.nickName
+            val displayName = if (newName.isNotEmpty()) newName else userProfile.name
+            val displayPhoneNumber = if (newPhoneNumber.isNotEmpty()) newPhoneNumber else userProfile.phoneNumber
+
+            binding.textViewUserNicknameMyPage.text = displayNickName
             binding.textViewUserIdMyPage.text = userProfile.userId
+
+            loginUserNickName = displayNickName
+            loginUserName = displayName
+            loginUserPhoneNumber = displayPhoneNumber
 
         }
     }
