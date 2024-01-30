@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
@@ -17,6 +18,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.project.comepethome.R
 import com.project.comepethome.databinding.FragmentMyPageModifyBinding
+import com.project.comepethome.databinding.ItemProfileImgBinding
 import com.project.comepethome.databinding.ItemUserWithdrawBinding
 import com.project.comepethome.ui.main.MainActivity
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -36,7 +38,7 @@ class MyPageModifyFragment : Fragment() {
     lateinit var loginUserName: String
     lateinit var loginUserPhoneNumber: String
 
-    private var selectedImageUri: Uri? = null
+    private var selectedImageUri: Uri = Uri.EMPTY
 
     // Registers a photo picker activity launcher in single-select mode.
     val pickMedia = registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
@@ -97,7 +99,38 @@ class MyPageModifyFragment : Fragment() {
 
             // 프로필 설정
             imageUserProfileMyPageModify.setOnClickListener {
-                pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+
+                val dialogView = ItemProfileImgBinding.inflate(layoutInflater)
+
+                val builder = MaterialAlertDialogBuilder(mainActivity)
+                    .setView(dialogView.root)
+                    .create()
+
+                // 사진 선택
+                dialogView.selectPhoto.setOnClickListener {
+                    pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+                    builder.dismiss()
+                }
+
+                // 현제 사진 삭젝
+                dialogView.deletePhoto.setOnClickListener {
+                    // 프로필 있으면 삭제 가능
+                    if (loginUserProfileImg != null || binding.imageUserProfileMyPageModify.drawable.constantState != ContextCompat.getDrawable(requireContext(), R.drawable.img_profile)?.constantState) {
+                        Glide.with(binding.root.context)
+                            .load(R.drawable.img_profile)
+                            .into(binding.imageUserProfileMyPageModify)
+
+                        // 선택된 사진이 있으면 비어지게하기
+                        selectedImageUri = Uri.EMPTY
+                    }
+
+                    myPageModifyViewModel.deleteProfileImg("${MainActivity.accessToken}")
+
+                    builder.dismiss()
+                }
+
+                builder.show()
+
             }
 
             // 로그인 한 유저의 닉네임, 이름, 휴대폰 번호 설정
@@ -160,11 +193,6 @@ class MyPageModifyFragment : Fragment() {
         val newNickName = binding.editTextNicknameMyPageModify.text.toString()
         val newName = binding.editTextNameMyPageModify.text.toString()
         val newPhoneNumber = binding.editTextPhoneNumberMyPageModify.text.toString()
-
-        if (newProfile == null) {
-            mainActivity.showSnackbar("프로필 이미지를 선택해주세요.")
-            return
-        }
 
         val imageFile = File(getRealPathFromURI(newProfile))
 

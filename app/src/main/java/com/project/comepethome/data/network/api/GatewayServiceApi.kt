@@ -8,6 +8,7 @@ import com.project.comepethome.data.model.UserProfileResponse
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Headers
@@ -47,5 +48,8 @@ interface GatewayServiceApi {
         @Header("access-token") accessToken: String,
         @Part image: MultipartBody.Part
     ): Call<UploadProfileResponse>
+
+    @DELETE("image/my-profile")
+    fun deleteProfileImg(@Header("access-token") accessToken: String): Call<LoginResponse>
 
 }

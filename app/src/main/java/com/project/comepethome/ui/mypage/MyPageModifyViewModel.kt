@@ -36,4 +36,8 @@ class MyPageModifyViewModel: ViewModel() {
         myPageModifyRepository.updateProfileImg(accessToken, imagePart)
     }
 
+    fun deleteProfileImg(accessToken: String){
+        myPageModifyRepository.deleteProfileImg(accessToken)
+    }
+
 }
