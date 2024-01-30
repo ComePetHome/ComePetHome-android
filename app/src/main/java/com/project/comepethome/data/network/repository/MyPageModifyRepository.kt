@@ -294,4 +294,60 @@ class MyPageModifyRepository {
         })
     }
 
+    fun userLogout(accessToken: String) {
+        val call = gatewayServiceApi.userLogout(accessToken)
+        call.enqueue(object : Callback<LoginResponse> {
+            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+
+                if (response.isSuccessful) {
+
+                }else{
+                    val errorBody = response.errorBody()?.string()
+
+                    if (errorBody?.contains("\"code\":172") == true) {
+                        refreshUserLogout()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+
+            }
+
+        })
+    }
+
+    fun refreshUserLogout() {
+        val call = gatewayServiceApi.userLogout("${MainActivity.refreshToken}")
+        call.enqueue(object : Callback<LoginResponse> {
+            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                if (response.isSuccessful) {
+
+                }else {
+                    logInRepository.loginUser(
+                        MainActivity.loginId,
+                        MainActivity.loginPassword,
+                        { accessToken, refreshToken ->
+
+                            MainActivity.accessToken = accessToken
+                            MainActivity.refreshToken = refreshToken
+
+                            MainActivity.accessToken?.let {newAccessToken ->
+                                userLogout(newAccessToken)
+                            }
+                        },
+                        { errorMessage ->
+
+                        }
+                    )
+                }
+            }
+
+            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+
+            }
+
+        })
+    }
+
 }

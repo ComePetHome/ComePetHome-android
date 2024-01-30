@@ -32,6 +32,9 @@ interface GatewayServiceApi {
         @Body request: ModifyRequest
     ): Call<LoginResponse>
 
+    @GET("api/user/query/logout")
+    fun userLogout(@Header("access-token") accessToken: String): Call<LoginResponse>
+
     @GET("image/my-profile")
     fun getUserProfileImg(@Header("access-token") accessToken: String): Call<List<String>>
 

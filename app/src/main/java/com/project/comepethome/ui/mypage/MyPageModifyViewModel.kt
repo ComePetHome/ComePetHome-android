@@ -40,4 +40,8 @@ class MyPageModifyViewModel: ViewModel() {
         myPageModifyRepository.deleteProfileImg(accessToken)
     }
 
+    fun userLogout(accessToken: String){
+        myPageModifyRepository.userLogout(accessToken)
+    }
+
 }

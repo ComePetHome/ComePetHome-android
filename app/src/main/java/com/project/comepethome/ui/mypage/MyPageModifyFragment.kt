@@ -150,6 +150,9 @@ class MyPageModifyFragment : Fragment() {
                 mainActivity.removeAllBackStack()
                 mainActivity.selectBottomNavigationItem(R.id.home_menu)
 
+                myPageModifyViewModel.userLogout("${MainActivity.accessToken}")
+                removeCurrentUserInfo()
+
                 val snackbar = Snackbar.make(binding.root, "로그아웃 되었습니다.", Snackbar.LENGTH_SHORT)
                 snackbar.view.elevation = 0f
                 snackbar.show()
@@ -241,6 +244,14 @@ class MyPageModifyFragment : Fragment() {
         } ?: run {
             return uri.path ?: ""
         }
+    }
+
+    private fun removeCurrentUserInfo() {
+        MainActivity.accessToken = null
+        MainActivity.refreshToken = null
+
+        MainActivity.loginId = ""
+        MainActivity.loginPassword = ""
     }
 
 }
