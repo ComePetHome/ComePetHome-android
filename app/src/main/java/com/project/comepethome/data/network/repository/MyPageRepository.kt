@@ -99,4 +99,79 @@ class MyPageRepository {
         })
     }
 
+    fun getUserProfileImg(
+        accessToken: String,
+        onSuccess: (String) -> Unit,
+        onFailure: () -> Unit
+    ) {
+        val call = gatewayServiceApi.getUserProfileImg(accessToken)
+        call.enqueue(object : Callback<List<String>> {
+            override fun onResponse(call: Call<List<String>>, response: Response<List<String>>) {
+
+                if (response.isSuccessful) {
+                    // 이미지 URL을 가져옴
+                    val imageUrl = response.body()?.get(0)
+
+                    if (imageUrl != null) {
+                        onSuccess(imageUrl)
+                    }
+
+                } else {
+                    val errorBody = response.errorBody()?.string()
+
+                    onFailure()
+
+                    if (errorBody?.contains("\"code\":172") == true) {
+                        refreshGetUserProfileImg(onSuccess, onFailure)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<List<String>>, t: Throwable) {
+
+            }
+
+        })
+    }
+
+    fun refreshGetUserProfileImg(
+        onSuccess: (String) -> Unit,
+        onFailure: () -> Unit
+    ){
+        val call = gatewayServiceApi.getUserProfileImg("${MainActivity.refreshToken}")
+        call.enqueue(object : Callback<List<String>> {
+            override fun onResponse(call: Call<List<String>>, response: Response<List<String>>) {
+
+                if (response.isSuccessful) {
+                    val imageUrl = response.body()?.get(0)
+
+                    if (imageUrl != null) {
+                        onSuccess(imageUrl)
+                    }
+
+                } else {
+                    logInRepository.loginUser(
+                        MainActivity.loginId,
+                        MainActivity.loginPassword,
+                        { accessToken, refreshToken ->
+
+                            MainActivity.accessToken = accessToken
+                            MainActivity.refreshToken = refreshToken
+
+                            MainActivity.accessToken?.let { getUserProfileImg(it, onSuccess, onFailure) }
+                        },
+                        { errorMessage ->
+
+                        }
+                    )
+                }
+            }
+
+            override fun onFailure(call: Call<List<String>>, t: Throwable) {
+
+            }
+
+        })
+    }
+
 }

@@ -12,8 +12,12 @@ class MyPageViewModel : ViewModel() {
     private val myPageRepository = MyPageRepository()
 
     private val _userProfileLiveData = MutableLiveData<UserProfileResponse>()
+    private val _userProfileImgLiveData = MutableLiveData<String?>()
     val userProfileLiveData: LiveData<UserProfileResponse>
         get() = _userProfileLiveData
+
+    val userProfileImgLiveData: MutableLiveData<String?>
+        get() = _userProfileImgLiveData
 
     fun getUserProfile(accessToken: String) {
         myPageRepository.getUserProfile(
@@ -33,6 +37,18 @@ class MyPageViewModel : ViewModel() {
                 _userProfileLiveData.value = userProfile
             },
             onFailure = { errorMessage ->
+            }
+        )
+    }
+
+    fun getUserProfileImg(accessToken: String) {
+        myPageRepository.getUserProfileImg(
+            accessToken,
+            onSuccess = { userProfileImg ->
+                _userProfileImgLiveData.value = userProfileImg
+            },
+            onFailure = {
+                _userProfileImgLiveData.value = null
             }
         )
     }

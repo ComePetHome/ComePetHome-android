@@ -33,13 +33,12 @@
             android:layout_height="wrap_content"
             android:padding="20dp">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/image_user_profile_myPage"
                 android:layout_width="92dp"
                 android:layout_height="92dp"
                 android:layout_marginTop="10dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_profile_24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.2"
                 app:layout_constraintStart_toStartOf="parent"

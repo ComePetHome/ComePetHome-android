@@ -30,12 +30,12 @@
         android:padding="10dp"
         app:layout_constraintTop_toBottomOf="@id/materialToolbar_myPage_modify">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image_user_profile_myPage_modify"
             android:layout_width="120dp"
             android:layout_height="120dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_profile_24dp"
+            android:src="@drawable/img_profile"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

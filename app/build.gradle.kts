@@ -74,4 +74,10 @@ dependencies {
 
     // dotsindicator
     implementation("com.tbuonomo:dotsindicator:5.0")
+
+    // circleimageview
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+
+    // glide
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 }
