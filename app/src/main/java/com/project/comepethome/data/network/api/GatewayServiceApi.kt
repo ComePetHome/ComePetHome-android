@@ -35,6 +35,9 @@ interface GatewayServiceApi {
     @GET("api/user/query/logout")
     fun userLogout(@Header("access-token") accessToken: String): Call<LoginResponse>
 
+    @DELETE("api/user/command/withdraw")
+    fun userWithdraw(@Header("access-token") accessToken: String): Call<LoginResponse>
+
     @GET("image/my-profile")
     fun getUserProfileImg(@Header("access-token") accessToken: String): Call<List<String>>
 

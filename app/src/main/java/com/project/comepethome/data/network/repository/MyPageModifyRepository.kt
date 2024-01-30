@@ -350,4 +350,59 @@ class MyPageModifyRepository {
         })
     }
 
+    fun userWithdraw(accessToken: String) {
+        val call = gatewayServiceApi.userWithdraw(accessToken)
+        call.enqueue(object : Callback<LoginResponse> {
+            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                if (response.isSuccessful) {
+
+                }else{
+                    val errorBody = response.errorBody()?.string()
+
+                    if (errorBody?.contains("\"code\":172") == true) {
+                        refreshUserWithdraw()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+
+            }
+
+        })
+    }
+
+    fun refreshUserWithdraw() {
+        val call = gatewayServiceApi.userWithdraw("${MainActivity.refreshToken}")
+        call.enqueue(object : Callback<LoginResponse> {
+            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                if (response.isSuccessful) {
+
+                }else {
+                    logInRepository.loginUser(
+                        MainActivity.loginId,
+                        MainActivity.loginPassword,
+                        { accessToken, refreshToken ->
+
+                            MainActivity.accessToken = accessToken
+                            MainActivity.refreshToken = refreshToken
+
+                            MainActivity.accessToken?.let {newAccessToken ->
+                                userWithdraw(newAccessToken)
+                            }
+                        },
+                        { errorMessage ->
+
+                        }
+                    )
+                }
+            }
+
+            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+
+            }
+
+        })
+    }
+
 }

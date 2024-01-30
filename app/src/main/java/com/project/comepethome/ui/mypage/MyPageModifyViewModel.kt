@@ -44,4 +44,8 @@ class MyPageModifyViewModel: ViewModel() {
         myPageModifyRepository.userLogout(accessToken)
     }
 
+    fun userWithdraw(accessToken: String){
+        myPageModifyRepository.userWithdraw(accessToken)
+    }
+
 }
