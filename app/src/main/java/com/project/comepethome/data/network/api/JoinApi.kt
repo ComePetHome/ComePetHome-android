@@ -23,4 +23,7 @@ interface JoinApi {
     @POST("api/email/verification/match-code")
     fun certificationEmail(@Body request: EmailRequest): Call<LoginResponse>
 
+    @POST("api/email/verification/temp-token")
+    fun verificationEmail(@Body request: EmailRequest): Call<LoginResponse>
+
 }

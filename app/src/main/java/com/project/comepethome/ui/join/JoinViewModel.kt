@@ -40,4 +40,13 @@ class JoinViewModel : ViewModel() {
         joinRepository.certificationEmail(userId, code, onSuccess, onFailure)
     }
 
+    fun verificationEmail(
+        userId: String,
+        code: String,
+        onSuccess: (String) -> Unit,
+        onFailure: (String) -> Unit
+    ){
+        joinRepository.verificationEmail(userId, code, onSuccess, onFailure)
+    }
+
 }

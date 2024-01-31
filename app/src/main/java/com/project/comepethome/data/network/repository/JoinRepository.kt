@@ -7,6 +7,7 @@ import com.project.comepethome.data.model.JoinRequest
 import com.project.comepethome.data.model.JoinResponse
 import com.project.comepethome.data.model.LoginResponse
 import com.project.comepethome.data.network.api.JoinApi
+import com.project.comepethome.ui.main.MainActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -118,6 +119,31 @@ class JoinRepository {
 
         })
 
+    }
+
+    fun verificationEmail(
+        userId: String,
+        code: String,
+        onSuccess: (String) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        val emailRequest = EmailRequest(userId, code)
+
+        val call = joinApi.verificationEmail(emailRequest)
+        call.enqueue(object : Callback<LoginResponse> {
+            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                if (response.isSuccessful) {
+                    MainActivity.accessToken = response.headers()["access-token"]
+                    onSuccess.invoke("이메일 인증에 성공했습니다")
+                } else {
+                    onFailure.invoke("이메일 인증에 실패했습니다\n        다시 시도 해주세요")
+                }
+            }
+
+            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                onFailure.invoke("이메일 인증에 실패했습니다\n        다시 시도 해주세요")
+            }
+        })
     }
 
 }
