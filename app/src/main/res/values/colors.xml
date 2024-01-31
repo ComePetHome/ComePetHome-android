@@ -4,6 +4,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="beige">#FFF2CC</color>
+    <color name="beige50">#80FFF2CC</color>
     <color name="yellow">#FFD966</color>
     <color name="orange">#F4B183</color>
     <color name="brown">#DFA67B</color>
