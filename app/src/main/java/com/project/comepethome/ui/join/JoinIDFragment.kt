@@ -1,5 +1,7 @@
 package com.project.comepethome.ui.join
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -10,9 +12,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.project.comepethome.R
 import com.project.comepethome.databinding.FragmentJoinIdBinding
+import com.project.comepethome.databinding.ItemJoinEmailBinding
 import com.project.comepethome.ui.main.MainActivity
 
 
@@ -36,8 +40,7 @@ class JoinIDFragment : Fragment() {
         viewModel = ViewModelProvider(this)[JoinViewModel::class.java]
 
         closeButton()
-        enterID()
-        checkJoinUserId()
+        checkJoinUserEmail()
         joinButton()
 
         return binding.root
@@ -49,74 +52,51 @@ class JoinIDFragment : Fragment() {
         }
     }
 
-    private fun enterID() {
-        val idEditText = binding.editTextIdJoinId
-        val nextButton = binding.buttonNextJoinId
-        val checkIdText = binding.textCheckIdJoinId
-
-        idEditText.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                // No implementation needed
-            }
-
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                // No implementation needed
-            }
-
-            override fun afterTextChanged(s: Editable?) {
-                // Check if the EditText has text
-                val isIdEntered = s?.isNotEmpty() ?: false
-
-                // Set the text color of checkIdText based on whether the EditText has text
-                checkIdText.setTextColor(
-                    if (isIdEntered) {
-                        // Set to orange color when isIdEntered is true
-                        ContextCompat.getColor(requireContext(), R.color.orange)
-                    } else {
-                        // Set to the original color when isIdEntered is false
-                        ContextCompat.getColor(requireContext(), R.color.gray200)
-                    }
-                )
-
-                if (checkIdText.text.toString() != "아이디 중복확인") {
-                    checkIdText.text = "아이디 중복확인"
-                    nextButton.setBackgroundResource(R.drawable.bg_rect_gray200_r10)
-                }
-
-                if (isIdEntered) {
-
-                } else {
-                    // 아이디 입력이 없을 때
-                    checkIdText.text = "아이디 중복확인"
-                    nextButton.setBackgroundResource(R.drawable.bg_rect_gray200_r10)
-                }
-            }
-        })
-
-    }
-
-    private fun checkJoinUserId() {
+    // 이메일 인증
+    private fun checkJoinUserEmail() {
 
         binding.textCheckIdJoinId.setOnClickListener {
 
             val joinId = binding.editTextIdJoinId.text.toString()
 
-            viewModel.checkUserId(joinId,
-                {
-                    // 성공시
-                    binding.textCheckIdJoinId.text = "사용가능한 아이디 입니다"
-                    binding.textCheckIdJoinId.setTextColor(ContextCompat.getColor(requireContext(), R.color.orange))
-                    binding.buttonNextJoinId.setBackgroundResource(R.drawable.bg_rect_orange_r10)
-                },
-                {
-                    // 실패시
-                    binding.textCheckIdJoinId.text = "이미 사용중인 아이디 입니다"
-                    binding.textCheckIdJoinId.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray200))
-                    binding.buttonNextJoinId.setBackgroundResource(R.drawable.bg_rect_gray200_r10)
+            viewModel.sendEmail(joinId)
 
-                }
-            )
+            val dialogView = ItemJoinEmailBinding.inflate(layoutInflater)
+
+            val builder = MaterialAlertDialogBuilder(mainActivity)
+                .setView(dialogView.root)
+                .create()
+
+            // 배경색을 투명으로 설정
+            builder.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+            dialogView.buttonCheckItemJoinEmail.setOnClickListener {
+                val certificationNumber = dialogView.editTextCertificationNumberItemJoinEmail.text.toString()
+
+                certification(joinId, certificationNumber)
+
+                builder.dismiss()
+            }
+
+            builder.show()
+
         }
+    }
+
+    private fun certification(userId : String, code : String){
+        viewModel.certificationEmail(
+            userId,
+            code,
+            { successMessage ->
+                binding.textviewResultMessageJoinId.text = successMessage
+                binding.buttonNextJoinId.setBackgroundResource(R.drawable.bg_rect_orange_r10)
+            },
+            { failureMessage ->
+                binding.textviewResultMessageJoinId.text = failureMessage
+                binding.buttonNextJoinId.setBackgroundResource(R.drawable.bg_rect_gray200_r10)
+            }
+
+        )
     }
 
     private fun joinButton() {
@@ -124,33 +104,20 @@ class JoinIDFragment : Fragment() {
             val joinId = binding.editTextIdJoinId.text.toString()
 
             if (joinId.isEmpty()) {
-                showSnackbar("아이디를 입력 해주세요.")
+                mainActivity.showSnackbar("이메일을 입력해 주세요.")
                 return@setOnClickListener
             }
 
-            val checkIdText = binding.textCheckIdJoinId.text.toString()
+            val resultMessage = binding.textviewResultMessageJoinId.text.toString()
 
             when {
-                checkIdText == "사용가능한 아이디 입니다" -> {
-                    // 중복 확인 성공
+                resultMessage == "이메일 인증에 성공했습니다" -> {
                     val bundle = Bundle()
                     bundle.putString("joinId", joinId)
                     mainActivity.replaceFragment(MainActivity.JOIN_PASSWORD_FRAGMENT, true, bundle)
                 }
-                checkIdText == "이미 사용중인 아이디 입니다" -> {
-                    showSnackbar("아이디를 다시 입력해 주세요.")
-                }
-                else -> {
-                    showSnackbar("아이디 중복 확인을 해주세요.")
-                }
             }
         }
-    }
-
-    private fun showSnackbar(message: String) {
-        val snackbar = Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT)
-        snackbar.view.elevation = 0f
-        snackbar.show()
     }
 
 }

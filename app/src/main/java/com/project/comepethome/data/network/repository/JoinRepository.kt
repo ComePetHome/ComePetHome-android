@@ -2,8 +2,10 @@ package com.project.comepethome.data.network.repository
 
 import android.util.Log
 import com.google.gson.GsonBuilder
+import com.project.comepethome.data.model.EmailRequest
 import com.project.comepethome.data.model.JoinRequest
 import com.project.comepethome.data.model.JoinResponse
+import com.project.comepethome.data.model.LoginResponse
 import com.project.comepethome.data.network.api.JoinApi
 import retrofit2.Call
 import retrofit2.Callback
@@ -71,6 +73,51 @@ class JoinRepository {
                 onError.invoke("네트워크 오류: ${t.message}")
             }
         })
+    }
+
+    fun sendEmail(userId: String) {
+        val call = joinApi.sendEmail(userId)
+        call.enqueue(object : Callback<LoginResponse> {
+            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                if (response.isSuccessful) {
+
+                } else {
+                    val errorBody = response.errorBody()?.string()
+
+                }
+            }
+
+            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+
+            }
+
+        })
+    }
+
+    fun certificationEmail(
+        userId: String,
+        code: String,
+        onSuccess: (String) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        val emailRequest = EmailRequest(userId, code)
+
+        val call = joinApi.certificationEmail(emailRequest)
+        call.enqueue(object : Callback<LoginResponse> {
+            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                if (response.isSuccessful) {
+                    onSuccess.invoke("이메일 인증에 성공했습니다")
+                } else {
+                    onFailure.invoke("이메일 인증에 실패했습니다\n        다시 시도 해주세요")
+                }
+            }
+
+            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                onFailure.invoke("이메일 인증에 실패했습니다\n        다시 시도 해주세요")
+            }
+
+        })
+
     }
 
 }

@@ -27,4 +27,17 @@ class JoinViewModel : ViewModel() {
         joinRepository.checkUserId(userId, onSuccess, onError)
     }
 
+    fun sendEmail(userId: String) {
+        joinRepository.sendEmail(userId)
+    }
+
+    fun certificationEmail(
+        userId: String,
+        code: String,
+        onSuccess: (String) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        joinRepository.certificationEmail(userId, code, onSuccess, onFailure)
+    }
+
 }
