@@ -112,7 +112,7 @@ class FindPasswordFragment : Fragment() {
 
             when {
                 resultMessage == "이메일 인증에 성공했습니다" -> {
-                    mainActivity.replaceFragment(MainActivity.FIND_PASSWORD_COMPLETE_FRAGMENT, true, null)
+                    mainActivity.replaceFragment(MainActivity.CHANGE_PASSWORD_FRAGMENT, true, null)
                 }
             }
 

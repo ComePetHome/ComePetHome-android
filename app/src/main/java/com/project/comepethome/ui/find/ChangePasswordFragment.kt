@@ -5,15 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.project.comepethome.R
-import com.project.comepethome.databinding.FragmentFindPasswordCompleteBinding
+import com.project.comepethome.databinding.FragmentChangePasswordBinding
 import com.project.comepethome.ui.main.MainActivity
 
 
-class FindPasswordCompleteFragment : Fragment() {
+class ChangePasswordFragment : Fragment() {
 
     lateinit var mainActivity: MainActivity
-    lateinit var binding: FragmentFindPasswordCompleteBinding
+    lateinit var binding: FragmentChangePasswordBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,7 +20,7 @@ class FindPasswordCompleteFragment : Fragment() {
     ): View? {
 
         mainActivity = activity as MainActivity
-        binding = FragmentFindPasswordCompleteBinding.inflate(layoutInflater)
+        binding = FragmentChangePasswordBinding.inflate(layoutInflater)
 
         moveToLogin()
 

@@ -15,7 +15,7 @@ import com.project.comepethome.ui.board.BoardSearchFragment
 import com.project.comepethome.ui.board.BoardWriteFragment
 import com.project.comepethome.ui.find.FindIdCompleteFragment
 import com.project.comepethome.ui.find.FindIdFragment
-import com.project.comepethome.ui.find.FindPasswordCompleteFragment
+import com.project.comepethome.ui.find.ChangePasswordFragment
 import com.project.comepethome.ui.find.FindPasswordFragment
 import com.project.comepethome.ui.home.HomeFragment
 import com.project.comepethome.ui.home.PetInfoFragment
@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
             FIND_ID_FRAGMENT -> FindIdFragment()
             FIND_ID_COMPLETE_FRAGMENT -> FindIdCompleteFragment()
             FIND_PASSWORD_FRAGMENT -> FindPasswordFragment()
-            FIND_PASSWORD_COMPLETE_FRAGMENT -> FindPasswordCompleteFragment()
+            CHANGE_PASSWORD_FRAGMENT -> ChangePasswordFragment()
             HOME_FRAGMENT -> HomeFragment()
             BOARD_MAIN_FRAGMENT -> BoardMainFragment()
             BOARD_INFO_FRAGMENT -> BoardInfoFragment()
@@ -201,7 +201,7 @@ class MainActivity : AppCompatActivity() {
         val FIND_ID_FRAGMENT = "FindIdFragment"
         val FIND_ID_COMPLETE_FRAGMENT = "FindIdCompleteFragment"
         val FIND_PASSWORD_FRAGMENT = "FindPasswordFragment"
-        val FIND_PASSWORD_COMPLETE_FRAGMENT = "FindPasswordCompleteFragment"
+        val CHANGE_PASSWORD_FRAGMENT = "ChangePasswordFragment"
         val HOME_FRAGMENT = "HomeFragment"
         val BOARD_MAIN_FRAGMENT = "BoardMainFragment"
         val BOARD_INFO_FRAGMENT = "BoardInfoFragment"
