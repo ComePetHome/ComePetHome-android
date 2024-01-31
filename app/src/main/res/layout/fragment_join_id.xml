@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="30dp"
-        android:text="아이디를 입력해 주세요"
+        android:text="이메일을 입력해 주세요"
         android:textAppearance="@style/Typography.medium20" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -49,7 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_edit_text"
-            android:hint="아이디"
+            android:hint="이메일"
             android:inputType="text"
             android:textAppearance="@style/Typography.regular18" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -60,9 +60,22 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:layout_marginTop="20dp"
-        android:text="아이디 중복 확인"
+        android:text="이메일 인증 하기"
         android:textAppearance="@style/Typography.regular14"
         android:textColor="@color/gray200" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="0.6" />
+
+    <TextView
+        android:id="@+id/textview_result_message_join_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAppearance="@style/Typography.medium24"
+        tools:text="이메일 인증에 실패했습니다\n        다시 시도 해주세요" />
 
     <View
         android:layout_width="0dp"
