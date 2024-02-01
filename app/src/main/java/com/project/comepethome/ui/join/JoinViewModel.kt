@@ -49,4 +49,13 @@ class JoinViewModel : ViewModel() {
         joinRepository.verificationEmail(userId, code, onSuccess, onFailure)
     }
 
+    fun changeUserPassword(
+        accessToken: String,
+        password: String,
+        onSuccess: () -> Unit,
+        onFailure: () -> Unit
+    ) {
+        joinRepository.changeUserPassword(accessToken, password, onSuccess, onFailure)
+    }
+
 }

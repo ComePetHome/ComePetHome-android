@@ -146,4 +146,28 @@ class JoinRepository {
         })
     }
 
+    fun changeUserPassword(
+        accessToken: String,
+        password: String,
+        onSuccess: () -> Unit,
+        onFailure: () -> Unit
+    ) {
+        val call = joinApi.changeUserPassword(accessToken, password)
+        call.enqueue(object : Callback<LoginResponse> {
+            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                if (response.isSuccessful) {
+                    onSuccess.invoke()
+                } else {
+                    onFailure.invoke()
+                }
+            }
+
+            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                onFailure.invoke()
+            }
+
+        })
+
+    }
+
 }

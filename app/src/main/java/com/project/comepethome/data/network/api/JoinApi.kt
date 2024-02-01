@@ -7,6 +7,7 @@ import com.project.comepethome.data.model.LoginResponse
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Query
 
@@ -25,5 +26,11 @@ interface JoinApi {
 
     @POST("api/email/verification/temp-token")
     fun verificationEmail(@Body request: EmailRequest): Call<LoginResponse>
+
+    @POST("api/user/command/change-pw")
+    fun changeUserPassword(
+        @Header("access-token") accessToken: String,
+        @Body password: String
+    ): Call<LoginResponse>
 
 }
