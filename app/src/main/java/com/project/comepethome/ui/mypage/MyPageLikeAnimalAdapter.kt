@@ -18,7 +18,7 @@ class MyPageLikeAnimalAdapter: RecyclerView.Adapter<MyPageLikeAnimalAdapter.MyPa
         init {
             itemPetLikeImage = binding.imageItemPetLike
             itemPetImage = binding.imageItemPet
-            itemPetInfoTextView = binding.textViewItemPetInfo
+            itemPetInfoTextView = binding.textViewItemPetInfoName
         }
 
     }

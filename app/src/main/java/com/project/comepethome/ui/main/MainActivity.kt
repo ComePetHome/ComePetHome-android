@@ -69,6 +69,54 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun addFragment(name:String){
+
+        // Fragment 교체 상태로 설정
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+
+        var newFragment: Fragment? = null
+
+        // 새로운 Fragment를 담을 변수
+        newFragment = when(name){
+            LOG_IN_FRAGMENT -> LogInFragment()
+            JOIN_ID_FRAGMENT -> JoinIDFragment()
+            JOIN_PASSWORD_FRAGMENT -> JoinPasswordFragment()
+            JOIN_NICKNAME_FRAGMENT -> JoinNicknameFragment()
+            JOIN_NAME_FRAGMENT -> JoinNameFragment()
+            JOIN_PHONE_NUMBER_FRAGMENT -> JoinPhoneNumberFragment()
+            FIND_ID_FRAGMENT -> FindIdFragment()
+            FIND_ID_COMPLETE_FRAGMENT -> FindIdCompleteFragment()
+            FIND_PASSWORD_FRAGMENT -> FindPasswordFragment()
+            CHANGE_PASSWORD_FRAGMENT -> ChangePasswordFragment()
+            HOME_FRAGMENT -> HomeFragment()
+            BOARD_MAIN_FRAGMENT -> BoardMainFragment()
+            BOARD_INFO_FRAGMENT -> BoardInfoFragment()
+            BOARD_WRITE_FRAGMENT -> BoardWriteFragment()
+            BOARD_SEARCH_FRAGMENT -> BoardSearchFragment()
+            SEARCH_ANIMAL_FRAGMENT -> SearchAnimalFragment()
+            MYPAGE_FRAGMENT -> MyPageFragment()
+            MYPAGE_MODIFY_FRAGMENT -> MyPageModifyFragment()
+            MYPAGE_LIKE_ANIMAL_FRAGMENT -> MyPageLikeAnimalFragment()
+            MYPAGE_BOARD_FRAGMENT -> MyPageBoardFragment()
+            PET_INFO_FRAGMENT -> PetInfoFragment()
+            PET_INFO_VIDEO_FRAGMENT -> PetInfoVideoFragment()
+
+            else -> Fragment()
+        }
+
+        if(newFragment != null) {
+
+            // Fragment를 Backstack에 넣어 이전으로 돌아가는 기능이 동작할 수 있도록 한다.
+            fragmentTransaction.addToBackStack(name)
+
+            // Fragment를 추가한다.
+            fragmentTransaction.add(R.id.fragmentContainerView_main, newFragment)
+
+            // 교체 명령이 동작하도록 한다.
+            fragmentTransaction.commit()
+        }
+    }
+
     fun replaceFragment(name:String, addToBackStack:Boolean, bundle:Bundle?){
 
         // Fragment 교체 상태로 설정

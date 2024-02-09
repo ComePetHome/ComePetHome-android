@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -18,45 +19,86 @@
             <ImageView
                 android:id="@+id/image_item_pet"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="180dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/img_dog"
+                app:layout_constraintBottom_toTopOf="@+id/layout_pet_info"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/image_item_pet_like"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_margin="12dp"
-                android:background="@drawable/shape_oval"
-                android:padding="6dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_heart_18dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/layout_pet_info"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
+                android:layout_gravity="bottom"
                 android:background="@color/beige"
-                android:padding="8dp"
+                android:orientation="vertical"
+                android:padding="4dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/image_item_pet">
 
                 <TextView
-                    android:id="@+id/textView_item_pet_info"
+                    android:id="@+id/textView_item_pet_info_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="경기-양평-2023-00430\n2023(년생)/암컷/1.7(Kg)\n경기도 양평군"
-                    android:textAppearance="@style/Typography.regular14"
-                    android:textSize="12dp" />
+                    android:textAlignment="center"
+                    android:textAppearance="@style/Typography.bold22"
+                    android:textSize="14sp"
+                    tools:text="절미" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/textView_item_pet_info_age"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1세 1개월"
+                        android:textAppearance="@font/jamsil_2_light"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="/"
+                        android:textAppearance="@font/jamsil_2_light"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/textView_item_pet_info_sex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="수"
+                        android:textAppearance="@font/jamsil_2_light"
+                        android:textSize="14sp" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <TextView
+                    android:id="@+id/textView_item_pet_info_center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="동대문센터"
+                    android:textAlignment="center"
+                    android:textAppearance="@font/jamsil_2_light"
+                    android:textSize="14sp" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/image_item_pet_like"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_margin="12dp"
+            android:background="@drawable/shape_oval"
+            android:padding="6dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_heart_18dp" />
 
     </androidx.cardview.widget.CardView>
 

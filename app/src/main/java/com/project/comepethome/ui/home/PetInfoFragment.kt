@@ -71,7 +71,7 @@ class PetInfoFragment : Fragment(), OnMapReadyCallback {
 
                 // 동물 영상 보기 클릭시
                 buttonVideoPetInfo.setOnClickListener {
-                    mainActivity.replaceFragment(MainActivity.PET_INFO_VIDEO_FRAGMENT, true, null)
+                    mainActivity.addFragment(MainActivity.PET_INFO_VIDEO_FRAGMENT)
                 }
 
             }

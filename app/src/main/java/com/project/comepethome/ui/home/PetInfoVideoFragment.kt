@@ -38,6 +38,7 @@ class PetInfoVideoFragment : Fragment() {
             materialToolbarPetInfoVideo.run {
                 setNavigationIcon(R.drawable.ic_back_24dp)
                 setNavigationOnClickListener {
+                    mainActivity.activityMainBinding.bottomNavigationViewMain.visibility = View.VISIBLE
                     mainActivity.removeFragment(MainActivity.PET_INFO_VIDEO_FRAGMENT)
                 }
             }
