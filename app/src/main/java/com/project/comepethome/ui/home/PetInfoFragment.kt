@@ -1,11 +1,17 @@
 package com.project.comepethome.ui.home
 
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.setFragmentResultListener
+import androidx.lifecycle.ViewModelProvider
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.MapFragment
 import com.naver.maps.map.NaverMap
@@ -15,6 +21,7 @@ import com.naver.maps.map.overlay.InfoWindow
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.OverlayImage
 import com.project.comepethome.R
+import com.project.comepethome.data.model.PetDetailsInfo
 import com.project.comepethome.databinding.FragmentPetInfoBinding
 import com.project.comepethome.ui.main.MainActivity
 
@@ -25,8 +32,17 @@ class PetInfoFragment : Fragment(), OnMapReadyCallback {
 
     private lateinit var naverMap: NaverMap
 
+    lateinit var homeViewModel: HomeViewModel
+
     private var isLiked = false
     private var isMapOpen = false
+    private var petName: String = ""
+    private var videoLink: String = ""
+
+    var currentPetDetailsInfo = PetDetailsInfo()
+
+    val TAG = "PetInfoFragment"
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +51,20 @@ class PetInfoFragment : Fragment(), OnMapReadyCallback {
 
         mainActivity = activity as MainActivity
         binding = FragmentPetInfoBinding.inflate(layoutInflater)
+
+        homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
+
+        setFragmentResultListener("petDetailsInfo") { _, bundle ->
+
+            currentPetDetailsInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                bundle.getParcelable("petInfo", PetDetailsInfo::class.java)!!
+            }else {
+                bundle.getParcelable("petInfo")!!
+            }
+
+            settingPetInfo(currentPetDetailsInfo)
+
+        }
 
         initUI()
 
@@ -71,7 +101,19 @@ class PetInfoFragment : Fragment(), OnMapReadyCallback {
 
                 // 동물 영상 보기 클릭시
                 buttonVideoPetInfo.setOnClickListener {
-                    mainActivity.addFragment(MainActivity.PET_INFO_VIDEO_FRAGMENT)
+
+                    if (videoLink.isNotEmpty()) {
+                        val bundle = Bundle()
+                        bundle.putString("petName", petName)
+                        bundle.putString("videoLink", videoLink)
+
+                        setFragmentResult("petNameAndVideo", bundle)
+
+                        mainActivity.addFragment(MainActivity.PET_INFO_VIDEO_FRAGMENT)
+                    } else {
+                        mainActivity.showSnackbar("동영상이 없습니다 ㅠㅠ")
+                    }
+
                 }
 
             }
@@ -130,6 +172,38 @@ class PetInfoFragment : Fragment(), OnMapReadyCallback {
         }
 
         infoWindow.open(marker)
+    }
+
+    private fun settingPetInfo(petDetailsInfo: PetDetailsInfo) {
+
+        binding.materialToolbarPetInfo.title = petDetailsInfo.name
+
+        when(petDetailsInfo.species) {
+            "DOG" -> binding.buttonAnimalTypePetInfo.text = "개"
+            "CAT" -> binding.buttonAnimalTypePetInfo.text = "고양이"
+        }
+
+        binding.buttonAnimalBreedPetInfo.text = petDetailsInfo.breeds
+
+        // 문자열로 부터 숫자 출력하는 과정
+        val ageString = petDetailsInfo.age
+        val ageRegex = """(\d+)""".toRegex()
+        val matchResult = ageRegex.find(ageString)
+        val age: Int? = matchResult?.groupValues?.get(1)?.toIntOrNull()
+
+        binding.buttonAnimalAgePetInfo.text =  "${age}살"
+        binding.buttonAnimalWeightPetInfo.text = petDetailsInfo.weight.toString() + "kg"
+
+        // 문자열에서 날짜 부분 추출
+        // ex) petDetailsInfo.enlistment_date : 2023-12-21T09:00:00.000Z
+        val dateParts = petDetailsInfo.enlistment_date.split("T")
+        val admissionDate = dateParts[0] // "T"를 기준으로 앞 부분 선택
+        binding.textAdmissionDatePetInfo.text = admissionDate
+        binding.textCenterNamePetInfo.text = petDetailsInfo.center
+        binding.textViewIntroductionPetInfo.text = petDetailsInfo.intro_contents
+
+        petName = petDetailsInfo.name
+        videoLink = petDetailsInfo.intro_url
     }
 
 }

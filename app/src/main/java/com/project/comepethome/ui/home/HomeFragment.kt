@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -41,7 +43,18 @@ class HomeFragment : Fragment() {
         binding.recyclerViewHome.apply {
             binding.recyclerViewHome.layoutManager = GridLayoutManager(context, 2)
             homeAdapter = HomeAdapter(object : OnItemClickListener{
-                override fun onItemClick() {
+                override fun onItemClick(petId: Int) {
+
+                    homeViewModel.getPetDetailsInfo(petId)
+
+                    homeViewModel.currentPetDetailsInfo().observe(viewLifecycleOwner) { petInfo ->
+
+                        val bundle = Bundle()
+                        bundle.putParcelable("petInfo", petInfo)
+
+                        setFragmentResult("petDetailsInfo", bundle)
+                    }
+
                     mainActivity.addFragment(MainActivity.PET_INFO_FRAGMENT)
                 }
             })

@@ -16,6 +16,7 @@ class PetsRepository {
 
     private val comePetHomeAPI: ComePetHomeAPI
     var _currentPagePetInfoLiveData = MutableLiveData<List<PetInfo>>()
+    var _currentPetDetailsInfoLiveData = MutableLiveData<PetDetailsInfo>()
 
     init {
         val retrofit = Retrofit.Builder()
@@ -37,6 +38,26 @@ class PetsRepository {
             }
 
             override fun onFailure(call: Call<List<PetInfo>>, t: Throwable) {
+                Log.d("HomeFragment", "네트워크 오류: ${t.message}")
+            }
+
+        })
+
+    }
+
+    fun getPetDetailsInfo(petId: Int) {
+        val call = comePetHomeAPI.getPetDetailsInfo(petId)
+
+        call.enqueue(object : Callback<PetDetailsInfo> {
+            override fun onResponse(call: Call<PetDetailsInfo>, response: Response<PetDetailsInfo>) {
+                if (response.isSuccessful) {
+                    _currentPetDetailsInfoLiveData.value = response.body()
+
+                }
+
+            }
+
+            override fun onFailure(call: Call<PetDetailsInfo>, t: Throwable) {
                 Log.d("HomeFragment", "네트워크 오류: ${t.message}")
             }
 

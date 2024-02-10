@@ -35,7 +35,10 @@ class HomeAdapter(private val listener: OnItemClickListener): RecyclerView.Adapt
 
             // 동물 클릭시 이벤트
             binding.root.setOnClickListener {
-                listener.onItemClick()
+
+                val position = bindingAdapterPosition
+
+                listener.onItemClick(allPetsInfoList[position].pet_id)
             }
 
         }
@@ -112,5 +115,5 @@ class HomeAdapter(private val listener: OnItemClickListener): RecyclerView.Adapt
 }
 
 interface OnItemClickListener {
-    fun onItemClick()
+    fun onItemClick(petId : Int)
 }
