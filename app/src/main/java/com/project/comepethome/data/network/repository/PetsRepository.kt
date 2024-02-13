@@ -16,6 +16,7 @@ class PetsRepository {
 
     private val comePetHomeAPI: ComePetHomeAPI
     var _currentPagePetInfoLiveData = MutableLiveData<List<PetInfo>>()
+    var _currentUserPagePetInfoLiveData = MutableLiveData<List<PetInfo>>()
     var _currentPetDetailsInfoLiveData = MutableLiveData<PetDetailsInfo>()
 
     init {
@@ -34,6 +35,24 @@ class PetsRepository {
             override fun onResponse(call: Call<List<PetInfo>>, response: Response<List<PetInfo>>) {
                 if (response.isSuccessful) {
                     _currentPagePetInfoLiveData.value = response.body()
+                }
+            }
+
+            override fun onFailure(call: Call<List<PetInfo>>, t: Throwable) {
+                Log.d("HomeFragment", "네트워크 오류: ${t.message}")
+            }
+
+        })
+
+    }
+
+    fun getAllPetInfo(pageNumber: String, accessToken: String) {
+        val call = comePetHomeAPI.getAllPetInfo(pageNumber, accessToken)
+
+        call.enqueue(object : Callback<List<PetInfo>> {
+            override fun onResponse(call: Call<List<PetInfo>>, response: Response<List<PetInfo>>) {
+                if (response.isSuccessful) {
+                    _currentUserPagePetInfoLiveData.value = response.body()
                 }
             }
 

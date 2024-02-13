@@ -14,6 +14,9 @@ class HomeViewModel : ViewModel() {
     private val currentPagePetInfoLiveData: LiveData<List<PetInfo>>
         get() = petsRepository._currentPagePetInfoLiveData
 
+    private val currentUserPagePetInfoLiveData: LiveData<List<PetInfo>>
+        get() = petsRepository._currentUserPagePetInfoLiveData
+
     private val currentPetDetailsInfoLiveData: LiveData<PetDetailsInfo>
         get() = petsRepository._currentPetDetailsInfoLiveData
 
@@ -23,6 +26,14 @@ class HomeViewModel : ViewModel() {
 
     fun getCurrentPagePetInfo(): LiveData<List<PetInfo>> {
         return currentPagePetInfoLiveData
+    }
+
+    fun getAllPetInfo(pageNumber: String, accessToken: String) {
+        petsRepository.getAllPetInfo(pageNumber, accessToken)
+    }
+
+    fun getCurrentUserPagePetInfo(): LiveData<List<PetInfo>> {
+        return currentUserPagePetInfoLiveData
     }
 
     fun getPetDetailsInfo(petId: Int) {

@@ -38,6 +38,40 @@ class HomeFragment : Fragment() {
 
         homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
 
+        if (MainActivity.isLogIn) {
+            yesLogIn()
+        } else {
+            noLogIn()
+        }
+
+        initUI()
+        moveToSearchAnimal()
+
+        return binding.root
+    }
+
+    private fun initUI() {
+        binding.run {
+            mainActivity.bottomNavigation()
+            mainActivity.activityMainBinding.bottomNavigationViewMain.visibility = View.VISIBLE
+        }
+    }
+
+    private fun moveToSearchAnimal() {
+        binding.materialToolbarHome.run {
+            setOnMenuItemClickListener {
+                when(it.itemId) {
+                    R.id.item_search -> {
+                        mainActivity.replaceFragment(MainActivity.SEARCH_ANIMAL_FRAGMENT, false, null)
+                        mainActivity.selectBottomNavigationItem(R.id.search_menu)
+                    }
+                }
+                false
+            }
+        }
+    }
+
+    private fun noLogIn() {
         homeViewModel.initialGetAllPetInfo(currentPage.toString())
 
         binding.recyclerViewHome.apply {
@@ -68,7 +102,6 @@ class HomeFragment : Fragment() {
             homeAdapter.notifyItemRangeChanged(currentPage * 10, 10)
         }
 
-
         binding.recyclerViewHome.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
@@ -83,32 +116,53 @@ class HomeFragment : Fragment() {
 
             }
         })
-
-        initUI()
-        moveToSearchAnimal()
-
-        return binding.root
     }
 
-    private fun initUI() {
-        binding.run {
-            mainActivity.bottomNavigation()
-            mainActivity.activityMainBinding.bottomNavigationViewMain.visibility = View.VISIBLE
-        }
-    }
+    private fun yesLogIn() {
+        homeViewModel.getAllPetInfo(currentPage.toString(), MainActivity.accessToken!!)
 
-    private fun moveToSearchAnimal() {
-        binding.materialToolbarHome.run {
-            setOnMenuItemClickListener {
-                when(it.itemId) {
-                    R.id.item_search -> {
-                        mainActivity.replaceFragment(MainActivity.SEARCH_ANIMAL_FRAGMENT, false, null)
-                        mainActivity.selectBottomNavigationItem(R.id.search_menu)
+        binding.recyclerViewHome.apply {
+            binding.recyclerViewHome.layoutManager = GridLayoutManager(context, 2)
+            homeAdapter = HomeAdapter(object : OnItemClickListener{
+                override fun onItemClick(petId: Int) {
+
+                    homeViewModel.getPetDetailsInfo(petId)
+
+                    homeViewModel.currentPetDetailsInfo().observe(viewLifecycleOwner) { petInfo ->
+
+                        val bundle = Bundle()
+                        bundle.putParcelable("petInfo", petInfo)
+
+                        setFragmentResult("petDetailsInfo", bundle)
                     }
+
+                    mainActivity.addFragment(MainActivity.PET_INFO_FRAGMENT)
                 }
-                false
-            }
+            })
+            binding.recyclerViewHome.adapter = homeAdapter
         }
+
+        homeViewModel.getCurrentUserPagePetInfo().observe(viewLifecycleOwner) {
+            it.forEach { petInfo ->
+                homeAdapter.setList(petInfo)
+            }
+            homeAdapter.notifyItemRangeChanged(currentPage * 10, 10)
+        }
+
+        binding.recyclerViewHome.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                val lastVisibleItemPosition = (recyclerView.layoutManager as GridLayoutManager?)!!.findLastCompletelyVisibleItemPosition()
+                val itemTotalCount = recyclerView.adapter!!.itemCount - 1
+
+                if (!binding.recyclerViewHome.canScrollVertically(1) && lastVisibleItemPosition == itemTotalCount) {
+                    currentPage++
+                    homeViewModel.getAllPetInfo(currentPage.toString(), MainActivity.accessToken!!)
+                }
+
+            }
+        })
     }
 
 }
