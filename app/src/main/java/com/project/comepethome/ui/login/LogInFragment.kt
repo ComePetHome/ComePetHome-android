@@ -83,4 +83,10 @@ class LogInFragment : Fragment() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+
+        mainActivity.showBottomNavigationView()
+    }
+
 }

@@ -84,12 +84,19 @@ class PetInfoFragment : Fragment(), OnMapReadyCallback {
 
                 // 좋아요 클릭시
                 setOnMenuItemClickListener {
-                    when(it.itemId) {
-                        R.id.item_like -> {
-                            isLiked = !isLiked
-                            updateLikeIcon()
+
+                    if (MainActivity.isLogIn) {
+                        when(it.itemId) {
+                            R.id.item_like -> {
+                                isLiked = !isLiked
+                                updateLikeIcon()
+                            }
                         }
+
+                    } else {
+                        mainActivity.loginAlert()
                     }
+
                     false
                 }
 

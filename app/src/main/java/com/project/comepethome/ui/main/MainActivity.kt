@@ -6,9 +6,12 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.project.comepethome.R
 import com.project.comepethome.databinding.ActivityMainBinding
+import com.project.comepethome.databinding.ItemUserLoginBinding
+import com.project.comepethome.databinding.ItemUserWithdrawBinding
 import com.project.comepethome.ui.board.BoardInfoFragment
 import com.project.comepethome.ui.board.BoardMainFragment
 import com.project.comepethome.ui.board.BoardSearchFragment
@@ -228,6 +231,24 @@ class MainActivity : AppCompatActivity() {
         val snackbar = Snackbar.make(activityMainBinding.root ,message, Snackbar.LENGTH_SHORT)
         snackbar.view.elevation = 0f
         snackbar.show()
+    }
+
+    fun loginAlert() {
+        val itemUserLoginBinding = ItemUserLoginBinding.inflate(layoutInflater)
+        val builder = MaterialAlertDialogBuilder(this)
+        builder.setView(itemUserLoginBinding.root)
+        val dialog = builder.create()
+
+        itemUserLoginBinding.buttonLogin.setOnClickListener {
+            addFragment(LOG_IN_FRAGMENT)
+            dialog.dismiss()
+        }
+
+        itemUserLoginBinding.buttonCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 
     companion object {
