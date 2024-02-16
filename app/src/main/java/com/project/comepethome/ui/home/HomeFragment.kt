@@ -132,6 +132,8 @@ class HomeFragment : Fragment() {
 
                         val bundle = Bundle()
                         bundle.putParcelable("petInfo", petInfo)
+                        bundle.putBoolean("petLike", homeAdapter.petLike)
+                        bundle.putInt("petId", petId)
 
                         setFragmentResult("petDetailsInfo", bundle)
                     }

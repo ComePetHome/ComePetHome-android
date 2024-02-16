@@ -15,6 +15,7 @@ import com.project.comepethome.ui.main.MainActivity
 class HomeAdapter(private val listener: OnItemClickListener): RecyclerView.Adapter<HomeAdapter.HomeViewHolder>(){
 
     private val allPetsInfoList = ArrayList<PetInfo>()
+    var petLike : Boolean = false
 
     inner class HomeViewHolder(binding: ItemHomePetListBinding): RecyclerView.ViewHolder(binding.root) {
 
@@ -37,6 +38,7 @@ class HomeAdapter(private val listener: OnItemClickListener): RecyclerView.Adapt
             binding.root.setOnClickListener {
 
                 val position = bindingAdapterPosition
+                petLike = allPetsInfoList[position].like
 
                 listener.onItemClick(allPetsInfoList[position].pet_id)
             }

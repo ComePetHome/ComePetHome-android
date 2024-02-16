@@ -44,4 +44,12 @@ class HomeViewModel : ViewModel() {
         return currentPetDetailsInfoLiveData
     }
 
+    fun likeAnimals(accessToken: String, petId: Int) {
+        petsRepository.likeAnimals(accessToken, petId)
+    }
+
+    fun unLikeAnimals(accessToken: String, petId: Int) {
+        petsRepository.unLikeAnimals(accessToken, petId)
+    }
+
 }

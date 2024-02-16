@@ -35,6 +35,7 @@ class PetInfoFragment : Fragment(), OnMapReadyCallback {
     lateinit var homeViewModel: HomeViewModel
 
     private var isLiked = false
+    private var petId = 0
     private var isMapOpen = false
     private var petName: String = ""
     private var videoLink: String = ""
@@ -61,6 +62,11 @@ class PetInfoFragment : Fragment(), OnMapReadyCallback {
             }else {
                 bundle.getParcelable("petInfo")!!
             }
+
+            isLiked = bundle.getBoolean("petLike")
+            petId = bundle.getInt("petId")
+
+            settingPetLike(isLiked)
 
             settingPetInfo(currentPetDetailsInfo)
 
@@ -130,8 +136,10 @@ class PetInfoFragment : Fragment(), OnMapReadyCallback {
 
     private fun updateLikeIcon() {
         if (isLiked) {
+            homeViewModel.likeAnimals("${MainActivity.accessToken}",petId)
             binding.materialToolbarPetInfo.menu.findItem(R.id.item_like).icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_full_heart_18dp)
         } else {
+            homeViewModel.unLikeAnimals("${MainActivity.accessToken}",petId)
             binding.materialToolbarPetInfo.menu.findItem(R.id.item_like).icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_heart_18dp)
         }
     }
@@ -179,6 +187,14 @@ class PetInfoFragment : Fragment(), OnMapReadyCallback {
         }
 
         infoWindow.open(marker)
+    }
+
+    private fun settingPetLike(like : Boolean) {
+        if (like) {
+            binding.materialToolbarPetInfo.menu.findItem(R.id.item_like).icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_full_heart_18dp)
+        } else {
+            binding.materialToolbarPetInfo.menu.findItem(R.id.item_like).icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_heart_18dp)
+        }
     }
 
     private fun settingPetInfo(petDetailsInfo: PetDetailsInfo) {

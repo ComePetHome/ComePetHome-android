@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.project.comepethome.data.model.PetDetailsInfo
 import com.project.comepethome.data.model.PetInfo
+import com.project.comepethome.data.model.PetInfoResponse
 import com.project.comepethome.data.network.api.ComePetHomeAPI
 import com.project.comepethome.ui.main.MainActivity
 import retrofit2.Call
@@ -125,6 +126,122 @@ class PetsRepository {
 
         })
 
+    }
+
+    fun likeAnimals(accessToken: String, petId: Int) {
+        val call = comePetHomeAPI.likeAnimals(accessToken, petId)
+
+        call.enqueue(object : Callback<PetInfoResponse> {
+            override fun onResponse(call: Call<PetInfoResponse>, response: Response<PetInfoResponse>) {
+                if (response.isSuccessful) {
+                    Log.d("PetInfoFragment", "likeAnimals 의 response.body() : ${response.body()}")
+                } else {
+                    val errorBody = response.errorBody()?.string()
+
+                    if (errorBody?.contains("\"code\":172") == true) {
+                        refreshLikeAnimals(petId)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<PetInfoResponse>, t: Throwable) {
+                Log.d("PetInfoFragment", "네트워크 오류: ${t.message}")
+            }
+
+        })
+    }
+
+    fun refreshLikeAnimals(petId: Int) {
+        val call = comePetHomeAPI.likeAnimals("${MainActivity.refreshToken}", petId)
+
+        call.enqueue(object : Callback<PetInfoResponse> {
+            override fun onResponse(call: Call<PetInfoResponse>, response: Response<PetInfoResponse>) {
+                if (response.isSuccessful) {
+                    Log.d("PetInfoFragment", "refreshLikeAnimals 의 response.body() : ${response.body()}")
+                } else {
+                    logInRepository.loginUser(
+                        MainActivity.loginId,
+                        MainActivity.loginPassword,
+                        { accessToken, refreshToken ->
+
+                            MainActivity.accessToken = accessToken
+                            MainActivity.refreshToken = refreshToken
+
+                            MainActivity.accessToken?.let {  newAccessToken ->
+                                likeAnimals(newAccessToken, petId)
+                            }
+
+                        },
+                        { errorMessage ->
+                            Log.d("HomeFragment", "errorMessage: ${errorMessage}")
+                        }
+                    )
+                }
+            }
+
+            override fun onFailure(call: Call<PetInfoResponse>, t: Throwable) {
+                Log.d("PetInfoFragment", "네트워크 오류: ${t.message}")
+            }
+
+        })
+    }
+
+    fun unLikeAnimals(accessToken: String, petId: Int) {
+        val call = comePetHomeAPI.unLikeAnimals(accessToken, petId)
+
+        call.enqueue(object : Callback<Unit> {
+            override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+                if (response.isSuccessful) {
+                    Log.d("PetInfoFragment", "unLikeAnimals 의 response.body() : ${response.body()}")
+                } else {
+                    val errorBody = response.errorBody()?.string()
+
+                    if (errorBody?.contains("\"code\":172") == true) {
+                        refreshUnLikeAnimals(petId)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<Unit>, t: Throwable) {
+                Log.d("PetInfoFragment", "네트워크 오류: ${t.message}")
+            }
+
+        })
+    }
+
+    fun refreshUnLikeAnimals(petId: Int) {
+        val call = comePetHomeAPI.unLikeAnimals("${MainActivity.refreshToken}", petId)
+
+        call.enqueue(object : Callback<Unit> {
+            override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+                if (response.isSuccessful) {
+                    Log.d("PetInfoFragment", "refreshUnLikeAnimals 의 response.body() : ${response.body()}")
+                } else {
+                    logInRepository.loginUser(
+                        MainActivity.loginId,
+                        MainActivity.loginPassword,
+                        { accessToken, refreshToken ->
+
+                            MainActivity.accessToken = accessToken
+                            MainActivity.refreshToken = refreshToken
+
+                            MainActivity.accessToken?.let {  newAccessToken ->
+                                unLikeAnimals(newAccessToken, petId)
+                            }
+
+                        },
+                        { errorMessage ->
+                            Log.d("HomeFragment", "errorMessage: ${errorMessage}")
+                        }
+                    )
+                }
+            }
+
+            override fun onFailure(call: Call<Unit>, t: Throwable) {
+                Log.d("PetInfoFragment", "네트워크 오류: ${t.message}")
+            }
+
+        })
     }
 
 }
